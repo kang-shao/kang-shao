@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java开发入门问题及解决方案]]></title>
+    <url>%2F2019%2F01%2F22%2FJava%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%2F</url>
+    <content type="text"><![CDATA[JDK的安装错误及解决方案一开始把JDK安装到C盘，在C盘的安装目录下bin目录下编写第一个hello world程序的时候出现以下错误： 文件不能正常保存，需要提供管理员身份。 找不到类，需要创建的类和文件名保持一致 后缀名错误，需要把后缀名显示出来 进行编译是出错 解决方案:在C盘编写代码的时候，需要提供管理员身份，而且有些功能不能实现，所以建议把JDK安装到D盘。 （PS：不过我在安装开发工具的时候有把JDK安装到了C盘，个人感觉安装在那个盘都可以，只不过在C盘操作命令的时候比较麻烦） 系统环境变量的设置按照教材中的做法认真一点，应该不会出错。也可以自己百度一下看一下教程，大致上都是一样的。 eclipse安装错误及解决方案进入官网进行下载eclipse工具时，出现以下错误： 下载出错 安装出错 解决方案:在官网下载时需要下载的是压缩包而不是exe文件，因为网上大部分的安装教程都是将的压缩包的安装方式（ps:自己也不会其他的安装方式）安装是注意自己的安装包是32位还是64位，因为要和自己一开始安装的jdk进行版本的匹配，不同的可能导致安装出错。自己下载二个版本的eclipse压缩包就行了，一个不行换另一个安装就行了。嘻嘻。 总结错误永远都是有的，不多趟点雷，怎么会长知识呢。吃一垫，长一智。]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Java开发入门]]></title>
     <url>%2F2019%2F01%2F19%2FJava%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8%2F</url>
     <content type="text"><![CDATA[Java概述java是一门程序设计语言 什么是Java javaSE（标准版）开发普通桌面和商务应用程序 javaEE（企业版）开发企业级应用程序 javaME（小型版）开发电子消费产品和嵌入式设备 Java语言特点 简单性 面向对象性 安全性 跨平台性（ps:一段程序可以在Windows上运行，也可以在Linux上运行） 支持多线程 JDK的使用什么是JDKSUN公司提供的一套java开发环境 Java编辑器 Java运行工具 Java文档生成工具 Java打包工具 安装JDK 百度一下（ps:尽量不要安装在C盘） 第一个Java程序编写Java源文件在JDK安装目录的bin目录下新建文本文档，重命名为HelloWorld.java。然后用记事本打开编写一段Java代码，如下所示： 12345678910class HelloWorld&#123; public stacic void mian(String[] args)&#123; System.out.println(&quot;这是第一个Java程序&quot;); &#125;&#125; 打开命令行窗口快捷键win+r,在运行窗口中输入cmd 进入JDK安装目录的bin目录使用cmd命令cd进入安装JDK目录下的bin目录 编译Java源文件使用javac命令对源文件HelloWorld.java进行编译,会在当前目录下生成HelloWorld.class字节码文件。 javac HelloWorld.java Ps：注意类名和文件名保持一致 运行Java程序使用命令java运行文件 java HelloWorld.java 运行时只要输入java HelloWorld就行 系统环境变量在计算书操作系统中可以定义一系列变量，这些变量可提供操作系统上所有应用程序使用，被称为系统环境变量。 path环境变量path环境变量是系统变量的一种，它用于保存一系列的路径，每个路径之间以分号分隔。当在命令行窗口运行一个可执行文件时，操作系统首先会在当前目录下查找该文件是否存在，如果不存在，会继续在path环境变量中定义的路径下寻找这个文件，如果仍未找到，系统会报错。 classpath环境变量classpath环境变量也用于保存一系列路径，它和path环境变量的查看与配置的方式完全相同。当Java虚拟机需要运行一个类时，会在classpath环境变量中所定义的路径下寻找所需的class文件和类包。 环境变量的设置自行百度 Java的运行机制Java程序运行时，必须经过编译和运行二个步骤。首先将后缀名为.java的源文件进行编译，生成后缀名为.class的字节码文件。然后，Java虚拟机将字节码文件进行解释执行，并将结果显示出来。 java程序是由虚拟机负责 开发工具在实际项目开发过程中，由于使用笔记本编写代码速度慢，且不容易排错，所以程序员很少用它来编写代码。为了提高程序的开发效率，大部分软件开发人员都是使用集成开发工具（IDE）来进行程序开发。 Eclipse概述eclipse是由蓝色巨人开发的一款功能完整且成熟的IDE集成开发环境，它是一个开源的、基于Java的可扩展开发平台，目前最流行的Java语言开发工具之一。 Eclipse的安装与启动 安装eclipse开发工具 启动eclipse开发工具 eclipse工作台 eclipse透视图 Eclipse进行程序开发 创建Java项目 在项目下创建包 创建Java类 编写程序代码 运行程序 总结不要好高骛远]]></content>
