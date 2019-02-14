@@ -102,11 +102,11 @@
 <meta property="og:image" content="http://yoursite.com/2019/02/11/面向对象-上/构造方法.构造方法的重载1.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/11/面向对象-上/this关键字.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/11/面向对象-上/垃圾回收.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/11/面向对象-上/static关键字/静态变量.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/11/面向对象-上/static关键字/静态方法.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/11/面向对象-上/static关键字/静态代码块.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/11/面向对象-上/static关键字.静态变量.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/11/面向对象-上/static关键字.静态方法.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/11/面向对象-上/static关键字.静态代码块.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/11/面向对象-上/成员内部类.png">
-<meta property="og:updated_time" content="2019-02-14T14:30:25.231Z">
+<meta property="og:updated_time" content="2019-02-14T14:35:51.297Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面向对象(上)">
 <meta name="twitter:description" content="面向对象的概念面向对象是一种符合人类思维的编程思想。现实生活中存在各种形态的不同的事物，这些事物之间存在着各种各样的联系。在程序中使用对象来映射现实中的事物，使用对象的关系来描述事物之间的联系，这种思想就是面向对象。">
@@ -442,17 +442,17 @@
 <h2 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h2><p>在Java中定义了一个static关键字，它用于修饰类的成员，如成员变量、成员方法以及代码块等，被static修饰的成员具备一些特殊性。</p>
 <h3 id="静态变量"><a href="#静态变量" class="headerlink" title="静态变量"></a>静态变量</h3><p>在定义一个类时，只是在描述某类事物的特征和行为，并没有产生具体的数据。只有通过new关键字创建类的实例对象后，系统才会为每个对象分配空间，存储各自的数据。有时候，开发人员会希望某些特定的数据只有一份，而且能够被一个类的所有实例对象所共享。</p>
 <p>在一个Java类中，可以使用static关键字来修饰成员变量，该变量被称作静态变量。静态变量被所有实例共享，可以使用”类名.变量名”的形式来访问。</p>
-<p><img src="/2019/02/11/面向对象-上/static关键字/静态变量.png" alt="图片"></p>
+<p><img src="/2019/02/11/面向对象-上/static关键字.静态变量.png" alt="图片"></p>
 <blockquote>
 <p>static关键字只能用于修饰成员变量，不能用于修饰局部变量，否则编译会报错。</p>
 </blockquote>
 <h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>在实际开发过程中，开发人员希望在不创建对象的情况下就可以调用某个方法，换句话说也就是使该方法不必和对象绑在一起。要实现这样的效果，只需要在类中定义的方法前加上static关键字即可，通常称这种方法为静态方法。同静态变量一样，静态方法可以使用”类名.方法名”的方式来访问，也可以通过类的实例对象来访问。</p>
-<p><img src="/2019/02/11/面向对象-上/static关键字/静态方法.png" alt="图片"></p>
+<p><img src="/2019/02/11/面向对象-上/static关键字.静态方法.png" alt="图片"></p>
 <blockquote>
 <p>在一个静态方法中只能访问用static修饰的成员，原因在于没有被static修饰的成员需要先创建对象才能访问，而静态方法可以在被调用时可以不创建任何对象。</p>
 </blockquote>
 <h3 id="静态代码块"><a href="#静态代码块" class="headerlink" title="静态代码块"></a>静态代码块</h3><p>在Java类中，使用一对大括号包围起来的若干行代码被称为一个代码块，使用static关键字修饰代码块称为静态代码块。当类被加载时，静态代码块会执行，由于类只加载一次，因此静态代码块只执行一次。在程序中，通常会使用静态代码块来对类的成员变量进行初始化。</p>
-<p><img src="/2019/02/11/面向对象-上/static关键字/静态代码块.png" alt="图片"></p>
+<p><img src="/2019/02/11/面向对象-上/static关键字.静态代码块.png" alt="图片"></p>
 <p>Java虚拟机首先会加载类Example01,在加载类的同时就会执行该类的静态代码块，紧接着会调用main()方法。在该方法中创建了二个Person对象，但在二次实例化对象的过程中，静态代码块中的内容只输出一次，这就说明静态代码块在类第一次使用时才会被加载，而且只会加载一次。</p>
 <h2 id="成员内部类"><a href="#成员内部类" class="headerlink" title="成员内部类"></a>成员内部类</h2><p>在Java中，允许在一个类的内部定义一个类，这样的类称作内部类，这个内部类所在的类称作外部类。根据内部类的位置、修饰符和定义的方式可分为成员内部类、静态内部类、方法内部类。</p>
 <p>在成员内部类中，可以访问外部类的成员。</p>
