@@ -1,0 +1,1055 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh_CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Java,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="类的继承继承的概念在程序中，继承描述的是事物之间的所属关系，通过继承可以使多种事物之间形成一种关系体系。 在Java中，类的继承是指在一个现有类的基础上去构建一个新的类，构建出来的新类被称作子类，现有类被称作父类，子类会自动拥有父类所有可继承的属性和方法。在程序中，如果想要声明一个类继承另一个类，需要使用extends关键字。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象-下">
+<meta property="og:url" content="http://yoursite.com/2019/02/25/面向对象-下/index.html">
+<meta property="og:site_name" content="kang-shao&#39;s blog">
+<meta property="og:description" content="类的继承继承的概念在程序中，继承描述的是事物之间的所属关系，通过继承可以使多种事物之间形成一种关系体系。 在Java中，类的继承是指在一个现有类的基础上去构建一个新的类，构建出来的新类被称作子类，现有类被称作父类，子类会自动拥有父类所有可继承的属性和方法。在程序中，如果想要声明一个类继承另一个类，需要使用extends关键字。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/类的继承.继承的概念1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/类的继承.重写父类方法1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/类的继承.super关键字1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/类的继承.super关键字2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/类的继承.super关键字3.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/抽象类和接口.抽象类.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/抽象类和接口.接口1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/抽象类和接口.接口2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/多态.多态概述1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/多态.对象的类型转换1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/多态.对象的类型转换2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/多态.Object类1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/多态.Object类2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/多态.Object类3.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/多态.匿名内部类1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/多态.匿名内部类2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/异常.什么是异常1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/异常.什么是异常2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/异常.什么是异常3.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/异常.try...catch和finally1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/异常.try...catch和finally2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/异常.自定义控制1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/访问控制1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/25/面向对象-下/访问控制2.png">
+<meta property="og:updated_time" content="2019-03-10T07:59:00.945Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象-下">
+<meta name="twitter:description" content="类的继承继承的概念在程序中，继承描述的是事物之间的所属关系，通过继承可以使多种事物之间形成一种关系体系。 在Java中，类的继承是指在一个现有类的基础上去构建一个新的类，构建出来的新类被称作子类，现有类被称作父类，子类会自动拥有父类所有可继承的属性和方法。在程序中，如果想要声明一个类继承另一个类，需要使用extends关键字。">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/25/面向对象-下/类的继承.继承的概念1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/25/面向对象-下/">
+
+
+
+
+
+  <title> 面向对象-下 | kang-shao's blog </title>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh_CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kang-shao's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">likeprinecss.work</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/25/面向对象-下/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kang-shao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kang-shao's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                面向对象-下
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-25T13:40:48+08:00">
+                2019-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h2><h3 id="继承的概念"><a href="#继承的概念" class="headerlink" title="继承的概念"></a>继承的概念</h3><p>在程序中，继承描述的是事物之间的所属关系，通过继承可以使多种事物之间形成一种关系体系。</p>
+<p>在Java中，类的继承是指在一个现有类的基础上去构建一个新的类，构建出来的新类被称作子类，现有类被称作父类，子类会自动拥有父类所有可继承的属性和方法。在程序中，如果想要声明一个类继承另一个类，需要使用extends关键字。</p>
+<a id="more"></a>
+<p><img src="/2019/02/25/面向对象-下/类的继承.继承的概念1.png" alt="图片"></p>
+<blockquote>
+<p>注意：public class XX 与你创建该类时所写的名字不符，不管你什么类,只要是Class,就只能有一个public class(公共类)</p>
+</blockquote>
+<p>子类在继承父类的时候，会自动拥有父类所有的成员。</p>
+<p>在类的继承中，需要注意一些问题，具体如下：</p>
+<ol>
+<li>在Java中，类只支持单继承，不允许多继承，也就是说一个类只能有一个直接父类。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;&#125;</span><br><span class="line">class B&#123;&#125;</span><br><span class="line">class C extends A,B&#123;&#125;//C类不可以直接同时继承A类和B类</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>多个类可以继承一个父类。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;&#125;</span><br><span class="line">class B extends A&#123;&#125;</span><br><span class="line">class C extends A&#123;&#125;//类B和类C都可以继承类A</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在Java中，多层继承是可以的，即一个类的父类可以再去继承另外的父类。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;&#125;</span><br><span class="line">class B extends A&#123;&#125;//类B继承类A,类B是类A的子类</span><br><span class="line">class C extends B&#123;&#125;</span><br><span class="line">//类C继承类B,类C继承类B的子类，同时也是类A的子类</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>在Java中，子类和父类是一种相对概念，也就是说一个类是某个类的父类的同时，也可以是另一个类的父类。</li>
+</ol>
+<h3 id="重写父类方法"><a href="#重写父类方法" class="headerlink" title="重写父类方法"></a>重写父类方法</h3><p>在继承关系中，子类会自动继承父类中定义的方法，但有时在子类中需要对继承的方法进行一些修改，即对父类的方法进行重写。需要注意的是，在子类中重写的方法需要和父类被重写的方法具有相同的方法名、参数列表以及返回值类型。</p>
+<p><img src="/2019/02/25/面向对象-下/类的继承.重写父类方法1.png" alt="图片"></p>
+<blockquote>
+<p>注意:子类重写父类方法时，不能使用比父类中被重写的方法更严格的访问权限，如：父类中的方法是public的，子类的方法就不能是private的。</p>
+</blockquote>
+<h3 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h3><p>当子类重写父类的方法以后，子类对象将无法访问父类被重写的方法。为了解决这个问题，Java中专门提供了一个super关键字用于访问父类成员。例如访问成员父类的成员变量、成员方法和构造方法。</p>
+<ol>
+<li>使用super关键字访问父类的成员变量和成员方法，具体格式如下。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">super.成员变量</span><br><span class="line">super.成员方法([参数1,参数2,···])</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/25/面向对象-下/类的继承.super关键字1.png" alt="图片"></p>
+<ol start="2">
+<li>使用super关键字访问父类的构造方法。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">super([参数1,参数2····])</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/25/面向对象-下/类的继承.super关键字2.png" alt="图片"></p>
+<p>实例化Dog对象时，一定会调用Dog类的构造方法。从运行结构可以看出，Dog类的构造方法被调用时，父类的构造方法也被调用了。需要注意，通过super调用父类构造方法的代码必须位于子类构造方法的第一行，并且只能出现一次。</p>
+<p><img src="/2019/02/25/面向对象-下/类的继承.super关键字3.png" alt="图片"></p>
+<blockquote>
+<p>子类在实例化时默认调用了父类无参的构造方法。在定义一个类时，如果没有特殊需求，尽量在类中定义一个无参的构造方法，避免被继承时出现错误。</p>
+</blockquote>
+<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><p>final关键字可用于修饰类、变量和方法，它有“无法改变”或者“最终”的含义，因此被final修饰的类、变量和方法将具有以下特性。</p>
+<ul>
+<li>final修饰的类不能被继承。</li>
+<li>final修饰的方法不能被子类重写。</li>
+<li>final修饰的变量(成员变量和局部变量)是常量，只能赋值一次。</li>
+</ul>
+<h3 id="final关键字修饰类"><a href="#final关键字修饰类" class="headerlink" title="final关键字修饰类"></a>final关键字修饰类</h3><p>Java中的类被final关键字修饰以后，该类将不可以被继承，也就是不能够派生子类。</p>
+<h3 id="final关键字修饰方法"><a href="#final关键字修饰方法" class="headerlink" title="final关键字修饰方法"></a>final关键字修饰方法</h3><p>当一个类的方法被final关键字修饰以后，这个子类将不能重写该方法。正是由于final的这种特性，当父类中定义某个方法时，如果不希望被子类重写，就可以使用final关键字修饰该方法。</p>
+<h3 id="final关键字修饰变量"><a href="#final关键字修饰变量" class="headerlink" title="final关键字修饰变量"></a>final关键字修饰变量</h3><p>Java中被修饰的变量，它只能被赋值一次，也就是说final修饰的变量一旦被赋值，其值不能改变。如果再次对变量进行赋值，则程序会在编译时报错。</p>
+<p>使用final关键字修饰成员变量时，虚拟机不会对其进行初始化。因此使用final修饰成员变量时，需要在定义变量的同时赋予一个初值。</p>
+<h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>当定义一个类时，常常需要定义一些方法来描述该类的行为特征，但有时这些方法的实现方式是无法确定的。例如:,前面在定义Animal类时，shout()方法用于表示动物的叫声，但是针对不同的动物，叫声也是不同的，因此在shout()方法中无法确定描述动物的叫声。</p>
+<p>针对上面描述的情况，Java允许在定义方法时不写方法体。不包含方法体的方法为抽象方法，抽象方法必须使用abstract关键字来修饰。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abstract void shout();//定义抽象方法shout()</span><br></pre></td></tr></table></figure>
+<p>当一个类中包含了抽象方法，该类必须使用abstract关键字来修饰，使用abstract关键字修饰的类为抽象类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//定义抽象类Animal</span><br><span class="line">abstract class Animal&#123;</span><br><span class="line">     //定义抽象方法shout()</span><br><span class="line">     abstract int shout();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在定义抽象类需要注意，包含抽象方法的类必须声明为抽象类，但抽象类可以不包含任何抽象方法，只需要使用abstract关键字来修饰即可。另外，抽象类是不可以被实例化的，因为抽象类中可能包含抽象方法，抽象方法是没有方法体的，不可以被调用。如果想要调用抽象类中定义的方法，则需要创建一个子类，在子类中将抽象类中的抽象方法进行实现。</p>
+<p><img src="/2019/02/25/面向对象-下/抽象类和接口.抽象类.png" alt="图片"></p>
+<p>子类实现了父类的抽象方法后,可以进行实例化，并通过实例化对象调用方法。</p>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><p>如果一个抽象类中的所有方法都是抽象的，则可以将这个类用另一种方式来定义，即接口。接口是由常量和抽象方法组成的特殊类，是对抽象类的进一步抽象。</p>
+<p>在定义接口时，需要使用interface关键字来声明，其语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[public] interface 接口名 []&#123;</span><br><span class="line">       [public] [static] [final] 数据类型 常量名 = 常量值;</span><br><span class="line">       [public] [abstract] 返回值 抽象方法名(参数列表);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的语法中，一个接口可以有多个父接口，它们之间用逗号隔开。Java使用接口的目的是为了克服单继承的限制，因为一个类只能有一个父类，而一个类可以实现多个接口。接口中的变量默认使用”public static final”来修饰，即全局常量；接口中定义的方法默认使用“public abstract” 来修饰,即抽象方法。如果接口声明为public，则接口中变量和方法全部为public。</p>
+<p>由于接口中方法都是抽象方法，因此不能通过实例化对象的方式来调用接口中的方法。此时需要定义一个类，并使用implements关键字实现接口中的所有方法。一个类可以在继承另一个类的同时实现多个接口，这些接口在implements子句中要使用英文逗号(,)隔开。接口的实现类声明格式如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&lt;修饰符&gt;] class &lt;类名&gt; [extends&lt;超类名&gt;] [implements &lt;接口1&gt;,&lt;接口2&gt;,···]</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/25/面向对象-下/抽象类和接口.接口1.png" alt="图片"></p>
+<p>从结果中可以看出，类Dog在实现了Animal接口后是可以被实例化的，并且实例化后就可以调用Dog类中的方法。需要注意的是，一个类实现一个一个接口，必须给出接口中所有方法的实现，如果不能实现某方法，也必须写出一个空方法。</p>
+<p>在程序中，还可以定义一个接口使用extends关键字去继承另一个接口。</p>
+<p><img src="/2019/02/25/面向对象-下/抽象类和接口.接口2.png" alt="图片"></p>
+<ul>
+<li>接口中的方法都是抽象的，不能实例化对象。</li>
+<li>接口中的属性只能是常量。</li>
+<li>当一个类实现接口时，如果这个类是抽象类，则实现接口中的部分方法即可，否则需要实现接口中的所有方法。</li>
+<li>一个类通过implements关键字实现接口时，可以实现多个接口，被实现的多个接口之间用逗号隔开，具体如下:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">interface Run&#123;</span><br><span class="line">     程序代码····</span><br><span class="line">&#125;</span><br><span class="line">interface Fly&#123;</span><br><span class="line">     程序代码····</span><br><span class="line">&#125;</span><br><span class="line">class Bird implements Run,Fly&#123;</span><br><span class="line">     程序代码····</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一个接口可以通过extends关键字继承多个接口，接口之间用逗号隔开，具体如下。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">interface Running&#123;</span><br><span class="line">     程序代码····</span><br><span class="line">&#125;</span><br><span class="line">interface Flying&#123;</span><br><span class="line">     程序代码···</span><br><span class="line">&#125;</span><br><span class="line">interface Eating extends Running,Flying&#123;</span><br><span class="line">     程序代码····</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一个类在继承另一个类的同时还可以实现接口，此时，extends关键字必须位于implements关键字之前，具体实例如下:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Dog extends Canidae implements Animal&#123; //先继承，在实现</span><br><span class="line">        程序代码····</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><h3 id="多态概述"><a href="#多态概述" class="headerlink" title="多态概述"></a>多态概述</h3><p>在设计一个方法时，通常希望该方法具备一定的通用性。在同一个方法中，这种由于参数类型不同而导致执行效果各异的现象就是多态。继承是多态得以实现的基础。</p>
+<p>在Java中，为了实现多态，允许使用一个父类类型的变量来引用一个子类类型的对象，根据被引用子类对象特征的不同，得到不同的运行结果。代码如下:</p>
+<p><img src="/2019/02/25/面向对象-下/多态.多态概述1.png" alt="图片"></p>
+<p>多态不仅解决了方法同名的问题，而且还使程序变得更加灵活，从而有效地提高了程序的可扩展性和可维护性。</p>
+<h3 id="对象的类型转换"><a href="#对象的类型转换" class="headerlink" title="对象的类型转换"></a>对象的类型转换</h3><p>在多态的学习中，涉及到将子类对象当作父类类型使用的情况，此种情况在Java的语言环境称为“向上转型”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Animal an1 = new Cat();//将Cat对象当作Animal类型来使用</span><br><span class="line">Animal an2 = new Dog();//将Dog对象当作Animal类型来使用</span><br></pre></td></tr></table></figure>
+<p>将子类对象当作父类使用时不需要任何显示地声明，需要注意的是，此时不能通过父类变量去调用子类中特有方法。</p>
+<p><img src="/2019/02/25/面向对象-下/多态.对象的类型转换1.png" alt="图片"></p>
+<p>通过运行结果可以看出，将传入的对象由Animal类型转为Cat类型后，程序可以成功调用shout()和sleep()方法，这种将父类型当作子类型使用的情况，在Java的语言环境中被称为“向下转型”。</p>
+<p>需要注意的是，在进行类型转换时也可能出现错误。</p>
+<p>针对这种情况，Java提供了一个关键字instanceof,它可以判断一个对象是否为某个类(或接口)实例或者子类实例，语法格式如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象(或者对象引用变量) instanceof 类(或接口)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/25/面向对象-下/多态.对象的类型转换2.png" alt="图片"></p>
+<h3 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h3><p>在JDK中提供了一个Object类，它是类层次结构的根类，每个类都直接或间接继承自该类，所有对象（包括数组）都实现了这个方法。Object类的常用方法如下图:</p>
+<p><img src="/2019/02/25/面向对象-下/多态.Object类1.png" alt="图片"></p>
+<p><img src="/2019/02/25/面向对象-下/多态.Object类2.png" alt="图片"></p>
+<p>在代码中调用了Animal对象的toString()方法，虽然Animal类并没有定义这个方法，但程序并没有报错。这是因为Animal类默认继承自Object类,在Object类中定义了toString()方法，在该方法中输出了对象的基本信息，Object类中的toString()方法中的代码具体如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getClass().getName()+&quot;@&quot;+Integer.toHexString(hashCode());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>getClass().getName()代表返回对象所属类的类名，即Animal。</li>
+<li>hashCode()代表返回该对象的哈希值。</li>
+<li>Integer.toHexString(hashCode())代表将对象的哈希值用十六进制表示。</li>
+</ul>
+<p>其中hashCode()是Object类中定义的一个方法，这个方法将对象的内存地址进行哈希运算，返回一个int联系的哈希值。</p>
+<p>在实际开发中，通常希望对象的toString()方法返回的不仅仅是基本信息，而是一些特有信息。这是重写Object的toString()方法便可以实现。</p>
+<p><img src="/2019/02/25/面向对象-下/多态.Object类3.png" alt="图片"></p>
+<h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><p>在编写Java程序时，在类里面定义的类称之为内部类(Inner Class)内部类是外部类的一个成员。Java内部类可以分为成员内部类，方法内部类和匿名内部类等。</p>
+<p>在前面多态的讲解中，如果方法参数被定义为一个参数类型，那么就需要定义一个类来实现接口，并根据该类进行对象实例化。除此之外，还可以使用匿名内部类来实现接口。所谓匿名内部类就是没有名字的内部类，表面上看起来它似乎有名字，实际上那并不是它的名字。当程序中使用匿名内部类时，在定义匿名内部类的地方往往直接创建该类的一个对象。</p>
+<p><img src="/2019/02/25/面向对象-下/多态.匿名内部类1.png" alt="图片"></p>
+<p>上图中，内部类Cat实现了Animal接口，在调用animalShout()方法时，将Cat类的实例对象作为参数传入到方法中，从而输出相应的结果。</p>
+<p>匿名内部类的格式，具体如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new 父类(参数列表) 或 父接口()&#123;</span><br><span class="line">   //匿名内部类实现部分</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/02/25/面向对象-下/多态.匿名内部类2.png" alt="图片"></p>
+<p>上二张图结果一样，但在其代码中使用匿名内部类实现的Animal接口。接下来分二个步骤来编写匿名内部类。</p>
+<ul>
+<li>在调用animalShout()方法时，在方法的参数位置写上new Animal(){},这相当于创建了一个实例对象，并将参数传给animalShout()方法。在new Animal()后面有一对大括号表示创建的对象为Animal的子类实例，该子类是匿名的。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animalShout(new Animal()&#123;&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在大括号中编写匿名子类的实现代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">animalShout(new Animal()</span><br><span class="line">    &#123;</span><br><span class="line">     public void shout()&#123;</span><br><span class="line">    System.out.println(&quot;喵喵···&quot;);  </span><br><span class="line">   &#125;   </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>匿名内部类是实现接口的一种简便写法，在程序中不一定非要使用匿名内部类。</p>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="什么是异常"><a href="#什么是异常" class="headerlink" title="什么是异常"></a>什么是异常</h3><p>在程序运行的过程中，也会发生各种非正常状况，例如程序运行时磁盘空间不足、网络连接中断、被装载的类不存在等。针对这种情况，在Java语言中，引入了异常，以异常类的形式对这些非正常情况进行封装，通过异常处理机制对程序运行时发生的各种问题进行处理。</p>
+<p><img src="/2019/02/25/面向对象-下/异常.什么是异常1.png" alt="图片"></p>
+<p>从结果可以看出，程序发生了算数异常(AnithmeticException)，这个异常是由于调用divide()方法时传入了参数0，而在divide()方法中，运算时出现了被0除的情况。在这个异常发生后，程序会立即结束，无法继续向下执行。</p>
+<p>AnithmeticException异常只是Java异常类中的一种，在Java中还提供了大量的异常类，这些类都继承自java.lang.Throwable类。</p>
+<p><img src="/2019/02/25/面向对象-下/异常.什么是异常2.png" alt="图片"></p>
+<p>如上可以看出，Throwable有二个直接子类Error和Exception。其中，Error代表程序中产生的错误，Exception代表程序中产生的异常。</p>
+<ul>
+<li>Error类成为错误类，它表示Java运行时产生的系统内部错误或资源耗尽的错误，是比较严重的，紧靠修改程序本身是不能恢复执行的。使用Java命令运行一个不存在的类就会出现Error错误。</li>
+<li>Exception类称为异常类，它表示程序本身可以处理的错误。在开发Java程序中进行的异常处理都是针对Exception类及其子类。在Exception类的众多子类中有一个特殊的RuntimeException类，该类及其子类用于表示运行时异常。除了此类，Exception类下所有其他的子类都用于表示编译时异常。</li>
+</ul>
+<p>如下Throwable类中的常用方法:</p>
+<p><img src="/2019/02/25/面向对象-下/异常.什么是异常3.png" alt="图片"></p>
+<p>这些方法都用于获取异常信息。由于Error和Exception继承自Throwable类，所以他们都拥有这些方法。</p>
+<h3 id="try…catch和finally"><a href="#try…catch和finally" class="headerlink" title="try…catch和finally"></a>try…catch和finally</h3><p>由于发生异常导致程序立即终止，所以无法继续向下执行了。为了解决这样的问题，Java中提供了一种对异常进行处理的方式–异常捕获。异常捕获通常使用try…catch语句，具体格式如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">   //程序代码块</span><br><span class="line">  &#125;catch(ExceptionType(Exception类及其子类)e)&#123;</span><br><span class="line">   //对ExceptionType的处理 </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，在try代码块中编写可能发生的异常的Java语句，catch代码块中编写针对异常进行处理的代码。当try代码块中的程序发生异常，系统会将这个异常的信息封装成一个异常的对象，并将这个对象传递给catch代码块。catch代码块需要一个参数指明它所能够接收的异常类型，这个参数的类型必须是Exception类或其他子类。</p>
+<p><img src="/2019/02/25/面向对象-下/异常.try...catch和finally1.png" alt="图片"></p>
+<blockquote>
+<p>在try代码块中，发生异常语句后面的代码是不会被执行的</p>
+</blockquote>
+<p>有时候会希望有些语句无论程序是否发生异常都要执行，这时就可以在try···catch语句后面加一个finally代码块。</p>
+<p><img src="/2019/02/25/面向对象-下/异常.try...catch和finally2.png" alt="图片"></p>
+<p>在程序设计时，经常会在try···catch后使用finally代码块来完成必须要做的事情，例如释放资源。</p>
+<p>需要注意的是，finally中的代码块在一般情况下是不会执行的，那就是在try···catch中执行了System.exit(0)语句。System.exit(0)表示退出当前的Java虚拟机，Java虚拟机停止了，任何代码都不能再执行了。</p>
+<h3 id="throws关键字"><a href="#throws关键字" class="headerlink" title="throws关键字"></a>throws关键字</h3><p>针对这种情况，Java中允许在方法的后面使用throw关键字对外声明该方法有可能发生异常，这样调用者在调用方法时，就明确地知道该方法有异常，并且必须在程序中的异常进行处理，否则编译不能通过。</p>
+<p>throws关键字声明抛出异常的语法格式如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修饰符 返回值类型 方法名([参数1,参数2···])throws ExceptionType1[</span><br><span class="line">        ,Exception Type2····]&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上述语法格式中可以看出，throw关键字需要写在方法声明的后面，throws后面需要声明方法中发生异常的类型，通常将这种做法称为方法声明抛出一个异常。</p>
+<h3 id="运行时异常与编译时异常"><a href="#运行时异常与编译时异常" class="headerlink" title="运行时异常与编译时异常"></a>运行时异常与编译时异常</h3><p>在实际开发过程中，经常会在程序编译时产生一些异常，而这些异常必要进行处理，这种异常被称为编译时异常，也称为checked异常。另外还有一种异常是在程序程序运行时产生的，这种异常即使不编写异常处理代码，依然可以通过编译，因此被称为运行时异常，也称为unchecked异常。</p>
+<ol>
+<li>编译时异常</li>
+</ol>
+<p>在Java中，Exception类除了RuntimeException类及其子类外都是编译时异常。编译时异常的特点是Java编译器会对其进行检查，如果出现异常就必须对异常进行处理，否则程序无法通过编译。</p>
+<p>处理编译时期的异常有二种方式，具体如下。</p>
+<ul>
+<li>使用try···catch语句对异常进行捕获。</li>
+<li>使用throws关键字声明抛出异常，调用者对其处理。</li>
+</ul>
+<ol start="2">
+<li>运行时异常</li>
+</ol>
+<p>RuntimeException类及其子类都是运行时异常。运行时异常的特点是Java编译器不会对其进行检查。也就是说，当程序中出现这类异常时，即使没有使用try···catch语句捕获或使用throws关键字声明抛出，程序也能编译通过。运行时异常一般是由程序中的逻辑错误引起的，在程序运行时无法恢复。</p>
+<h3 id="自定义控制"><a href="#自定义控制" class="headerlink" title="自定义控制"></a>自定义控制</h3><p>JDK中定义了大量的异常类，虽然这些异常类可以描述编程时出现的大部分异常情况，但是在程序开发中有时可能需要描述程序中特有的异常情况。在Java中允许用户自定义异常，但自定义异常的异常类必须继承自Exception或其子类。</p>
+<p>在实际开发中，如果没有特殊的要求，自定义的异常类只需继承Exception类，在构造方法中使用super()语句调用Exception的构造方法即可。</p>
+<p>throw关键字用于在方法中声明抛出异常的实例化对象，其语法格式如下。</p>
+<p><code>throw Exception 异常对象</code></p>
+<p>在一个方法内使用throw关键字抛出异常对象时，需要try···catch语句对抛出的异常进行处理。</p>
+<p><img src="/2019/02/25/面向对象-下/异常.自定义控制1.png" alt="图片"></p>
+<h2 id="访问控制"><a href="#访问控制" class="headerlink" title="访问控制"></a>访问控制</h2><p>在Java中，针对类、成员方法和属性提供了4种访问级别，分别是private、default、protected和public。</p>
+<p><img src="/2019/02/25/面向对象-下/访问控制1.png" alt="图片"></p>
+<ul>
+<li>private(类访问级别):如果类的成员被private访问控制符来修饰，则这个成员只能被该类的其他成员访问，其他类无法直接访问。类的良好封装就是通过private关键字来实现的。</li>
+<li>default(包访问级别):如果一个类或者类的成员不使用任何访问控制符修饰，则称它为默认访问控制级别，这个类或者类的成员只能被本包中的其他类访问。</li>
+<li>protected(子类访问级别):如果一个类的成员被protected访问控制符修饰，那么这个成员既能被同一个包下的其他类访问，也能被不同包下该类的子类访问。</li>
+<li>public(公共访问级别):这是一个最宽松的访问控制级别，如果一个类或者类的成员被public访问修饰符修饰，那么这个类或者类成员能被所有的类访问，不管访问类与被访问类是否在同一个包中。</li>
+</ul>
+<p><img src="/2019/02/25/面向对象-下/访问控制2.png" alt="图片"></p>
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><h3 id="USB接口程序设计"><a href="#USB接口程序设计" class="headerlink" title="USB接口程序设计"></a>USB接口程序设计</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">package kang;</span><br><span class="line">//定义一个名称为USB的接口</span><br><span class="line">public interface USB &#123;</span><br><span class="line">	void turnOn();//启动</span><br><span class="line">	void turnOff();//关闭</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package kang;</span><br><span class="line">//鼠标</span><br><span class="line">public class Mouse implements USB &#123;</span><br><span class="line">	public void turnOn()&#123;</span><br><span class="line">		System.out.println(&quot;鼠标打开了&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	public void turnOff()&#123;</span><br><span class="line">		System.out.println(&quot;鼠标关闭了&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package kang;</span><br><span class="line">//键盘</span><br><span class="line">public class KeyBoard implements USB &#123;</span><br><span class="line">	public void turnOn()&#123;</span><br><span class="line">		System.out.println(&quot;键盘打开了&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	public void turnOff()&#123;</span><br><span class="line">		System.out.println(&quot;键盘关闭了&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package kang;</span><br><span class="line">//麦克风</span><br><span class="line">public class Mic implements USB &#123;</span><br><span class="line">	public void turnOn()&#123;</span><br><span class="line">		System.out.println(&quot;麦克风打开了&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	public void turnOff()&#123;</span><br><span class="line">		System.out.println(&quot;麦克风关闭了&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package kang;</span><br><span class="line">//计算机</span><br><span class="line">public class Computer &#123;</span><br><span class="line">	//计算机上的USB插槽</span><br><span class="line">	private USB[] usbArr = new USB[4];</span><br><span class="line">	//向计算机连接一个USB设备</span><br><span class="line">	public void add(USB usb)&#123;</span><br><span class="line">		//循环遍历所有插槽</span><br><span class="line">		for(int i=0;i&lt; usbArr.length;i++)&#123;</span><br><span class="line">			//如果发现一个是空的</span><br><span class="line">			if(usbArr[i]==null)&#123;</span><br><span class="line">				//将usb设备连接在这个插槽上</span><br><span class="line">				usbArr[i]=usb;</span><br><span class="line">				//连接上以后循环结束</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	//计算机开机功能</span><br><span class="line">	public void powerOn()&#123;</span><br><span class="line">		//循环遍历所有插槽</span><br><span class="line">		for(int i=0;i&lt;usbArr.length;i++)&#123;</span><br><span class="line">			//如果发现有设备</span><br><span class="line">			if(usbArr[i]!=null)&#123;</span><br><span class="line">				//将USB设备启动</span><br><span class="line">				usbArr[i].turnOn();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;计算机开机成功&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	//计算机关机功能</span><br><span class="line">	public void powerOff()&#123;</span><br><span class="line">		for(int i=0;i&lt;usbArr.length;i++)&#123;</span><br><span class="line">			if(usbArr[i]!=null)&#123;</span><br><span class="line">				usbArr[i].turnOff();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;计算机关机成功&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package kang;</span><br><span class="line">//测试类</span><br><span class="line"> class Task01Test &#123;</span><br><span class="line">	public static void main(String[] args)&#123;</span><br><span class="line">		//实例化计算机对象</span><br><span class="line">		Computer c = new Computer();</span><br><span class="line">		//向计算机中添加鼠标、麦克风和键盘设备</span><br><span class="line">		c.add(new Mouse());</span><br><span class="line">		c.add(new Mic());</span><br><span class="line">		c.add(new KeyBoard());</span><br><span class="line">		c.powerOn();//启动计算机</span><br><span class="line">		System.out.println();</span><br><span class="line">		c.powerOff();//关闭计算机</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模拟物流快递系统程序设计"><a href="#模拟物流快递系统程序设计" class="headerlink" title="模拟物流快递系统程序设计"></a>模拟物流快递系统程序设计</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br></pre></td><td class="code"><pre><span class="line">package www;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * 交通工具类</span><br><span class="line"> * */</span><br><span class="line"></span><br><span class="line">public abstract class Transportation &#123;</span><br><span class="line">	private String number; //编号</span><br><span class="line">	private String model;  //型号</span><br><span class="line">	private String admin;  //运货负责人</span><br><span class="line">	</span><br><span class="line">	public Transportation()&#123;</span><br><span class="line">		super(); //可省略</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public Transportation(String number,String model,String admin)&#123;</span><br><span class="line">		this.number=number;</span><br><span class="line">		this.model = model;</span><br><span class="line">		this.admin=admin;</span><br><span class="line">	&#125;</span><br><span class="line">	//运输方式</span><br><span class="line">	public abstract void transport();</span><br><span class="line">	</span><br><span class="line">	//编号</span><br><span class="line">	public String getNumber() &#123;</span><br><span class="line">		return number;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNumber(String number) &#123;</span><br><span class="line">		this.number = number;</span><br><span class="line">	&#125;</span><br><span class="line">	//型号</span><br><span class="line">	public String getModel() &#123;</span><br><span class="line">		return model;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setModel(String model) &#123;</span><br><span class="line">		this.model = model;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//负责人</span><br><span class="line">	public String getAdmin() &#123;</span><br><span class="line">		return admin;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setAdmin(String admin) &#123;</span><br><span class="line">		this.admin = admin;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package www;</span><br><span class="line">/*</span><br><span class="line"> * 定义保养借口，具有保养功能</span><br><span class="line"> */</span><br><span class="line">public interface Careable &#123;</span><br><span class="line">	//保养方法</span><br><span class="line">	public abstract void upKeep();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package www;</span><br><span class="line">/*</span><br><span class="line"> * 专用运输车类</span><br><span class="line"> */</span><br><span class="line">public class ZTransportation extends Transportation implements Careable &#123;</span><br><span class="line">	//无参构造</span><br><span class="line">	public ZTransportation()&#123;</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	//有参构造：车辆编号、型号、负责人</span><br><span class="line">	public ZTransportation(String number,String model,String admin)&#123;</span><br><span class="line">		super(number,model,admin);</span><br><span class="line">	&#125;</span><br><span class="line">	//运输方法</span><br><span class="line">	public void transport()&#123;</span><br><span class="line">		System.out.println(&quot;运输进行中····&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	//重写车辆保养方法</span><br><span class="line">	public void upKeep()&#123;</span><br><span class="line">		System.out.println(&quot;货物运输车辆保养完毕！&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package www;</span><br><span class="line">/*</span><br><span class="line"> * 快递任务</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class SendTask &#123;</span><br><span class="line">	</span><br><span class="line">	private String number;//快递单号</span><br><span class="line">	private double goodsWeight;//货物重量</span><br><span class="line">	</span><br><span class="line">	public SendTask()&#123;</span><br><span class="line">		super();//可省略</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public SendTask(String number,double goodsWeight)&#123;</span><br><span class="line">		this.number= number;</span><br><span class="line">		this.goodsWeight=goodsWeight;</span><br><span class="line">	&#125;</span><br><span class="line">	//送前准备</span><br><span class="line">	public void sendBefore()&#123;</span><br><span class="line">		System.out.println(&quot;订单开始处理，仓库验货中···&quot;);</span><br><span class="line">		System.out.println(&quot;货物重量:&quot;+this.getGoodsWeight()+&quot;kg&quot;);</span><br><span class="line">		System.out.println(&quot;货物检验完毕！&quot;);</span><br><span class="line">		System.out.println(&quot;货物填装完毕！&quot;);</span><br><span class="line">		System.out.println(&quot;运货人已通知&quot;);</span><br><span class="line">		System.out.println(&quot;快递单号:&quot;+this.getNumber());</span><br><span class="line">	&#125;</span><br><span class="line">	//发送货物</span><br><span class="line">	public void send(Transportation t,GPS tool)&#123;</span><br><span class="line">		System.out.println(&quot;运货人&quot;+t.getAdmin()+&quot;正在驾驶编号为&quot;+t.getNumber()+&quot;的&quot;+t.getModel()+&quot;发送货物!&quot;);</span><br><span class="line">		t.transport();</span><br><span class="line">		String showCoordincate = tool.showCoordinate();</span><br><span class="line">		System.out.println(&quot;货物当前的坐标为:&quot;+showCoordincate);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public void sendAfter(Transportation t)&#123;</span><br><span class="line">		System.out.println(&quot;货物运输任务完成!&quot;);</span><br><span class="line">		System.out.println(&quot;运货人&quot;+t.getAdmin()+&quot;正在驾驶编号为&quot;+t.getNumber()+&quot;的&quot;+t.getModel()+&quot;已归还!&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getNumber() &#123;</span><br><span class="line">		return number;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNumber(String number) &#123;</span><br><span class="line">		this.number = number;</span><br><span class="line">	&#125;</span><br><span class="line">	public double getGoodsWeight() &#123;</span><br><span class="line">		return goodsWeight;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setGoodsWeight(double goodsWeight) &#123;</span><br><span class="line">		this.goodsWeight = goodsWeight;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package www;</span><br><span class="line">/*</span><br><span class="line"> * 定义GPS借口，具备GPS定位功能</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public interface GPS &#123;</span><br><span class="line">	//显示坐标的方法</span><br><span class="line">	public String showCoordinate();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package www;</span><br><span class="line">/*</span><br><span class="line"> * 定义一个手机类，实现GPS接口，拥有定位功能</span><br><span class="line"> */</span><br><span class="line">class Phone implements GPS &#123;</span><br><span class="line">	public Phone()&#123;//空参构造</span><br><span class="line">		super();</span><br><span class="line">	&#125;</span><br><span class="line">	//定位方法</span><br><span class="line">	public String showCoordinate()&#123;</span><br><span class="line">		String location = &quot;193.485&quot;;</span><br><span class="line">		return location;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">package www;</span><br><span class="line"></span><br><span class="line">public class Task02Test &#123;</span><br><span class="line"></span><br><span class="line">	/**</span><br><span class="line">	 * 定义测试类</span><br><span class="line">	 */</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		// 快递任务类对象</span><br><span class="line">		SendTask task = new SendTask(&quot;HYX600235&quot;,76.34);</span><br><span class="line">		//调用送前准备方法</span><br><span class="line">		task.sendBefore();</span><br><span class="line">		//创建交通工具对象</span><br><span class="line">		System.out.println(&quot;=========================&quot;);</span><br><span class="line">		//创建GPS工具对象</span><br><span class="line">		ZTransportation t = new ZTransportation(&quot;Z025&quot;,&quot;大本&quot;,&quot;小韩&quot;);</span><br><span class="line">		//将交通工具与GPS工具传入送货方法</span><br><span class="line">		Phone p = new Phone();</span><br><span class="line">		//调用送后操作方法</span><br><span class="line">		task.send(t,p);</span><br><span class="line">		</span><br><span class="line">		System.out.println(&quot;=========================&quot;);</span><br><span class="line">		</span><br><span class="line">		task.sendAfter(t);</span><br><span class="line">		</span><br><span class="line">		t.upKeep();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/15/微信小程序入门-布局/" rel="next" title="微信小程序入门-布局">
+                <i class="fa fa-chevron-left"></i> 微信小程序入门-布局
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="kang-shao">
+          <p class="site-author-name" itemprop="name">kang-shao</p>
+           
+              <p class="site-description motion-element" itemprop="description">教室里，黄昏下，桐琴纸笛，余音绕梁。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类的继承"><span class="nav-number">1.</span> <span class="nav-text">类的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承的概念"><span class="nav-number">1.1.</span> <span class="nav-text">继承的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重写父类方法"><span class="nav-number">1.2.</span> <span class="nav-text">重写父类方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#super关键字"><span class="nav-number">1.3.</span> <span class="nav-text">super关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#final关键字"><span class="nav-number">2.</span> <span class="nav-text">final关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#final关键字修饰类"><span class="nav-number">2.1.</span> <span class="nav-text">final关键字修饰类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final关键字修饰方法"><span class="nav-number">2.2.</span> <span class="nav-text">final关键字修饰方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final关键字修饰变量"><span class="nav-number">2.3.</span> <span class="nav-text">final关键字修饰变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类和接口"><span class="nav-number">3.</span> <span class="nav-text">抽象类和接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象类"><span class="nav-number">3.1.</span> <span class="nav-text">抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口"><span class="nav-number">3.2.</span> <span class="nav-text">接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">4.</span> <span class="nav-text">多态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多态概述"><span class="nav-number">4.1.</span> <span class="nav-text">多态概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的类型转换"><span class="nav-number">4.2.</span> <span class="nav-text">对象的类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object类"><span class="nav-number">4.3.</span> <span class="nav-text">Object类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名内部类"><span class="nav-number">4.4.</span> <span class="nav-text">匿名内部类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常"><span class="nav-number">5.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是异常"><span class="nav-number">5.1.</span> <span class="nav-text">什么是异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#try…catch和finally"><span class="nav-number">5.2.</span> <span class="nav-text">try…catch和finally</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#throws关键字"><span class="nav-number">5.3.</span> <span class="nav-text">throws关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时异常与编译时异常"><span class="nav-number">5.4.</span> <span class="nav-text">运行时异常与编译时异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义控制"><span class="nav-number">5.5.</span> <span class="nav-text">自定义控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问控制"><span class="nav-number">6.</span> <span class="nav-text">访问控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本章小结"><span class="nav-number">7.</span> <span class="nav-text">本章小结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#USB接口程序设计"><span class="nav-number">7.1.</span> <span class="nav-text">USB接口程序设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟物流快递系统程序设计"><span class="nav-number">7.2.</span> <span class="nav-text">模拟物流快递系统程序设计</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kang-shao</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
