@@ -1,0 +1,977 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh_CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Java,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
+
+
+
+
+
+
+<meta name="description" content="大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序运行的结果等。在Java中，将这种通过不同输入输出设备(键盘、内存、显示器、网络等)之间的数据传输抽象表述为“流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的“流”都位于java.io包中，称为IO(输入输出)流。">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IO(输入输出)">
+<meta property="og:url" content="http://yoursite.com/2019/05/26/IO-输入输出/index.html">
+<meta property="og:site_name" content="kang-shao&#39;s blog">
+<meta property="og:description" content="大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序运行的结果等。在Java中，将这种通过不同输入输出设备(键盘、内存、显示器、网络等)之间的数据传输抽象表述为“流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的“流”都位于java.io包中，称为IO(输入输出)流。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/IO.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.字节流概念1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.字节流概念2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.字节流概念3.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.字节流概念4.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.字节流读写文件1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.字节流读写文件2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.字节流读写文件3.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.文件的拷贝1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.字节流的缓冲区1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.字节缓冲流1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字节流.字节缓冲流2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字符流.字符流定义及基本用法1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字符流.字符流操作文件1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字符流.字符流操作文件2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字符流.字符流操作文件3.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字符流.转换流1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/字符流.转换流2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/File类.File类的常用方法1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/File类.File类的常用方法2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/File类.File类的常用方法3.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/File类.File类的常用方法4.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/File类.File类的常用方法5.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/File类.File类的常用方法6.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/File类.删除文件及目录1.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/26/IO-输入输出/File类.删除文件及目录2.png">
+<meta property="og:updated_time" content="2019-06-02T06:10:46.899Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IO(输入输出)">
+<meta name="twitter:description" content="大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序运行的结果等。在Java中，将这种通过不同输入输出设备(键盘、内存、显示器、网络等)之间的数据传输抽象表述为“流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的“流”都位于java.io包中，称为IO(输入输出)流。">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/26/IO-输入输出/IO.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/26/IO-输入输出/">
+
+
+
+
+
+  <title> IO(输入输出) | kang-shao's blog </title>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh_CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kang-shao's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">likeprinecss.work</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/IO-输入输出/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kang-shao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kang-shao's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                IO(输入输出)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-26T09:39:43+08:00">
+                2019-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>大多数应用程序都需要实现与设备之间的数据传输，例如键盘可以输入数据，显示器可以显示程序运行的结果等。在Java中，将这种通过不同输入输出设备(键盘、内存、显示器、网络等)之间的数据传输抽象表述为“流”，程序允许通过流的方式与输入输出设备进行数据传输。Java中的“流”都位于java.io包中，称为IO(输入输出)流。</p>
+<a id="more"></a>
+<p>IO流有很多种，按照操作数据不同，可以分为字节流和字符流，按照数据传输方向的不同又可分为输入流和输出流，程序从输入流中读取数据，向输出流中写入数据。在IO包中，字节流的输入输出流分别用java.io.InputStream和java.io.OutputStream表示，字符流的输入输出流分别用java.io.Reader和java.io.Writer表示，具体分类如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/IO.png" alt="图片"></p>
+<h2 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h2><h3 id="字节流概念"><a href="#字节流概念" class="headerlink" title="字节流概念"></a>字节流概念</h3><p>在计算机中，无论是文本、图片、音频还是视频，所有文件都是以二进制(字节)形式存在的，IO流中针对字节输入输出提供了一系列的流，统称为字节流。字节流是程序中最常见的流，根据数据的传输方向可将其分为字节输入流和字节输出流。在JDK中，提供了二个抽象类InputStream和OutputStream，它们是字节流的顶级父类，所有的字节输入流都继承自InputStrem，所有的字节输出流都继承自OutputStream。为了方便理解，可以把InputStream和OutputStream比作两根“水管”，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.字节流概念1.png" alt="图片"></p>
+<p>上图中，InputStream被看成一个输入管道，OutputStream被看成一个输出管道，数据通过InputStream从源设备输入到程序，通过OutputStream从程序输出到目标设备，从而实现数据的传输。由此可见，Io流中的输入输出都是相对于程序而言。</p>
+<p>在JDK中，InputStream和OutputStream提供了一系列与读写数据相关的方法，接下来了解一下InputStream的常用方法，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.字节流概念2.png" alt="图片"></p>
+<p>上图列举了InputStream的4个常用方法。前三个read()方法都是用来读数据的，其中第一个read()方法是从输入流中逐个读入字节，而第2个和第3个read()方法则将若干字节以字节数组的形式一次性读入，从而提高读数据的效率。在进行IO流操作时，当前IO流会占用一定的内存，由于系统资源宝贵，因此，在IO操作结束后，应该调用close()方法关闭流，从而释放当前IO流所占的系统资源。</p>
+<p>与InputStream对应的是OutputStream。OutputStream是用于写数据的，因此OutputStream提供了一些与写数据有关的方法，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.字节流概念3.png" alt="图片"></p>
+<p>上图中列举了OutputStream类的5个常用方法。前3个是重载的write()方法，都用于向输出流写入字节。其中，第一个方法逐个写入字节，后两个方法是将若干个字节以字节数组的形式一次性写入，从而提高写数据的效率。flush()方法用于将来当前输出流缓冲区(通常是字节数组)中数据强制写入目标设备，此过程称为刷新。close()方法是用来关闭流并释放与当前IO流相关的系统资源。</p>
+<p>InputStream和OutputStream这两个类虽然提供了一系列和读写数据有关的方法，但是这两个类是抽象类，不能被实例化。因此，针对不同功能，InputStream和OutputStream提供了不同的子类，这些子类形成了一个体系结构，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.字节流概念4.png" alt="图片"></p>
+<p>上图中可以看出，InputStream和OutputStream的子类有很多是大致对应的，比如，ByteArrayInputStream和ByteArrayOutputStream、FileInputStream和FileOutputStream等。图中所列出的IO流都是程序中很常见的，接下来将逐步为读者讲解这些流的具体用法。</p>
+<h3 id="字节流读写文件"><a href="#字节流读写文件" class="headerlink" title="字节流读写文件"></a>字节流读写文件</h3><p>由于计算机中的数据基本保存在硬盘的文件中，因此操作文件中的数据是一种很常见的操作。在操作文件时，最常见的就是从文件中读取数据并将数据写入文件，即文件的读写。针对文件的读写JDK专门提供了二个类，分别是FileInputStream和FileOutputStream。</p>
+<p>FileInputStream是InputStream的子类，它是操作文件的字节输入流，专门用于读取文件中的数据。由于从文件读取数据是重复的操作，因此需要通过循环语句来实现数据的持续读取。</p>
+<p>接下来通过一个案例来实现字节流对文件数据的读取。首先在Eclipse项目的根目录下创建一个文本文件test.txt，在文件中输入内容“itcast”并保存。然后创建一个读取文本文件的类，具体代码如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.字节流读写文件1.png" alt="图片"></p>
+<p>上图中创建的字节流FileInputStream通过read()方法将当前项目的文件”test.txt”中数据读取并打印。从上图的运行结果可以看出，结果分别为104、101、108、108、111。通常情况下读取文件应该输出字符，这里之所以输出数字是因为硬盘上的文件是以字节形式存在的。在”test.txt”文件中，字符‘h’、‘e’、‘l’、‘l’、‘o’各占一个字节，因此，最终结果显示的就是文件“test.txt”文件中的5个字节所对应的十进制数。</p>
+<p>需要注意的是，在读取文件数据时，必须保证文件在相应目录存在并且是可读的，否则会抛出文件找不到的异常FileNotFoundException。</p>
+<p>与FileInputStream对应的是FileOutputStream是OutputStream的子类，它是操作文件的字节输出流，专门用于数据写入文件。接下来通过一个案例来演示如何将数据写入文件，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.字节流读写文件2.png" alt="图片"></p>
+<p>程序运行后，会在项目当前目录下生成一个新的文本文件example.txt(运行程序后，该文件可能不会立即显示在项目目录下，此时使用鼠标右键单击项目，在弹出的窗口中，单击[refresh]，在项目进行刷新即可)，打开文件看到上图所示结果。</p>
+<p>从运行结果可以看出，通过FileOutStream写数据时，自动创建了文件example.txt，并将数据写入文件。需要注意的是，如果通过FileOutputStream向一个已经存在的文件中写入数据，那么该文件中的数据首先会被清空，在写入新的数据。若希望在已存在的文件内容之后追加新内容，则可使用FileOutputStream的构造函数FIleOutputStream(String fileName,boolean append)来创建文件输出流对象，并把append参数设置为true。接下来通过一个案例来演示如何将数据追加到文件末尾，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.字节流读写文件3.png" alt="图片"></p>
+<p>从上图可以看出，程序通过字节输出流对象向文件“example.txt”写入“hello”后，并没有将文件之前的数据清空，而是将新写入的数据追加到了文件的末尾。</p>
+<p>由于IO流在进行数据读写操作时会出现异常，为了代码的简洁，在上面的程序中使用了throws关键字将异常抛出。然而一旦遇到IO异常，IO流的close()方法将无法得到执行，流对象所占用的系统资源将得不到释放，因此，为了保证IO流的close()方法必须执行，通常将关闭流操作写在finally代码块中，具体代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">finally&#123;</span><br><span class="line">	try &#123;</span><br><span class="line">		if (in!=null) &#123;   //如果in不为空，关闭输入流</span><br><span class="line">			in.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; catch (Exception e) &#123;</span><br><span class="line">		if (out!=null) &#123;   //如果out不为空，关闭输出流</span><br><span class="line">			out.close();</span><br><span class="line">		&#125;catch (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="文件的拷贝"><a href="#文件的拷贝" class="headerlink" title="文件的拷贝"></a>文件的拷贝</h3><p>在应用程序中，IO流通常都是成对出现的，即输入流和输出流一起使用。例如文件的拷贝就需要通过输入流来读取文件中的数据，通过输出流将数据写入文件。接下来通过一个案例来演示如何进行文件的内容的拷贝。</p>
+<p>首先在当前项目目录下创建文件夹source和target(右键单击项目名称–&gt;[new]–&gt;[folder]),然后在source文件夹中存放一个“love.mp3”文件，拷贝文件的代码如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.文件的拷贝1.png" alt="图片"></p>
+<p>程序运行结束后，刷新并打开target文件夹，发现source文件夹中的“love.mp3”文件被成功拷贝到了target文件夹，如上图所示。</p>
+<p>上图中实现了mp3文件的拷贝。在拷贝的过程中，通过while循环将字节逐个进行拷贝。每循环一次，就通过FileInputStream的read()方法读取一个字节，并通过FileOutputStream的write()方法将该字节写入指定文件，循环往复，直到len的值为-1，表示读取到了文件的末尾，结束循环，完成文件的拷贝。程序运行结束以后，会在命令行窗口打印拷贝mp3文件消耗的时间，如上图所示。</p>
+<p>上图可以看出，程序拷贝mp3文件共消耗了98302毫秒。在拷贝文件时，由于计算机性能各方面原因，会导致拷贝文件所消耗的时间不确定，因此每次运行程序结果未必相同。</p>
+<blockquote>
+<p>需要注意的是，上图中在定义文件路径使用了”\“。这是因为在Windows中目录符号为反斜线”\”,但反斜线”\”在Java中是特殊字符，表示转义符，所以在使用反斜线”\”时，前面应该再添加一个反斜线，即为”\“。除此之外，目录符号也可以用正斜线”/“来表示，如”source/love.mp3”。</p>
+</blockquote>
+<h3 id="字节流的缓冲区"><a href="#字节流的缓冲区" class="headerlink" title="字节流的缓冲区"></a>字节流的缓冲区</h3><p>上小节虽然实现了文件的拷贝，但是一个字节一个字节地读写，需要频繁地操作文件，效率非常低。当通过流的方式拷贝文件时，为了提高效率也可以定义定义一个字节数组作为缓冲区。当拷贝文件时，可以一次性读取多个字节的数据，并保存在字节数组中，然后将字节数组中的数据一次性写入文件。接下来学习如何使用缓冲区拷贝文件，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.字节流的缓冲区1.png" alt="图片"></p>
+<p>上图实现了mp3文件的拷贝。在拷贝过程中，使用while循环语句逐渐实现字节文件的拷贝，没循环一次，就从文件读取若干字节填充字节数组，并通过变量len记住读入数组的字节数，然后从数组的第一个字节开始，将len个字节依次写入文件。往复循环，当len值为-1，说明已读到了文件末尾，循环会结束，整个拷贝过程结束了。最终程序会将整个文件拷贝到目标文件夹，并将拷贝过程消耗的时间打印出来，如上图所示。</p>
+<p>通过二次拷贝文件，可以看出拷贝文件消耗的时间明显减少了，这说明使用缓冲区读写文件可以有效地提高程序的效率。程序中的缓冲区就是一块内存，该内存主要用于存放暂时输入输出的数据，由于使用缓冲区减少了对文件的操作次数，所以可以提高读写数据的效率。</p>
+<h3 id="字节缓冲流"><a href="#字节缓冲流" class="headerlink" title="字节缓冲流"></a>字节缓冲流</h3><p>在IO包中提供了二个带缓冲的字节流，分别是BufferedInputStream和BufferedOutputStream类型的参数作为对象，在读写数据提供了缓冲功能。应用程序、缓冲区和底层字节流之间的关系如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.字节缓冲流1.png" alt="图片"></p>
+<p>上图可以看出，应用程序是通过缓冲流来完成数据读写的，而缓冲区又是通过底层的字节流与设备进行关联的。接下来通过一个案例来学习BufferedInputStream和BufferedOutputStream这两个流的用法。</p>
+<p>首先需要在Eclipse的项目目录下创建一个名称为test.txt的文件，并在该文件中写入内容；然后创建一个使用字节缓冲区拷贝该文件的类，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字节流.字节缓冲流2.png" alt="图片"></p>
+<p>上图中创建了BufferedInputStream和BufferedOutputStream两个缓冲对象，这两个流内部定义了一个大小为10056字节数组。当调用read()或者write()方法读写数据时，首先将读写的数据存入定义好的字节数组，然后将字节数组的数据一次性读写到文件中。这种方法与字节流的缓冲区类似，都对数据进行了缓冲，从而有效地提高了数据的读写效率。</p>
+<h2 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h2><h3 id="字符流定义及基本用法"><a href="#字符流定义及基本用法" class="headerlink" title="字符流定义及基本用法"></a>字符流定义及基本用法</h3><p>InputStream类和OutputStream类在读写文件时操作的都是字节，如果希望在程序中操作字符，使用这两个类就不太方便了，为此JDK提供了字符流。同字节流一样，字符流也有两个抽象的顶级父类，分别是Reader和Writer。其中，Reader是字符输入流，用于从某个源设备读取字符。Writer是字符输出流，用于向某个目标设备写入字符。Reader和Writer的一些常用子类，如下图所示。</p>
+<p>从下图可以看出，字符流的继承关系与字节流的继承关系有些类似，很多子类都是成对(输入流和输出流)出现的。其中，FileReader和FileWriter用于读写文件BufferedReader和BufferedWriter是具有缓冲功能的流，使他们可以提高读写效率。</p>
+<p><img src="/2019/05/26/IO-输入输出/字符流.字符流定义及基本用法1.png" alt="图片"></p>
+<h3 id="字符流操作文件"><a href="#字符流操作文件" class="headerlink" title="字符流操作文件"></a>字符流操作文件</h3><p>在程序开发中，经常需要对文本文件的内容进行读取，如果想从文件中直接读取字符，便可以使用字符输入流FileReader，通过此流可以从关联的文件中读取一个或一组字符。接下来通过一个案例来学习如何使用FileReader读取文件中的字符。</p>
+<p>首先在项目当前目录下新建文本文件”test.txt”并在其中输入字符”hello”，然后创建一个使用字符输入流FileReader读取文件中字符的类，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字符流.字符流操作文件1.png" alt="图片"></p>
+<p>上图实现了读取文件字符的功能。首先创建一个FileReader对象与文件相连，然后通过while循环每次从文件读取一个字符并打印，这样便实现了FileReader读文件字符的操作。需要注意的是，字符输入流的read()方法返回的是int类型的值，如果想要获得字符就需要进行强制类型转化，上图中，第12行就是将变量ch转为char类型再打印。</p>
+<p>上图讲解了如何使用FileReader读取文件中的字符，如果要向文件中写入字符就需要使用FileWriter类，该类是Writer的一个子类。接下来通过一个案例来学习如何使用FileWriter将字符写入文件，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字符流.字符流操作文件2.png" alt="图片"></p>
+<p>程序运行结束后，会在当前目录下生成一个名称为”writer.txt”的文件，打开此文件会看到上图的内容。</p>
+<p>FileWriter同FileOutputStream一样，如果指定的文件不存在，就会先创建文件，在写入数据，如果文件存在，则会首先清空文件中的内容，再进行写入。如果想要在文件末尾追加数据，同样需要调用重载的构造方法，现将上图中第8行代码进行修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileWriter writer= new FileWriter(&quot;writer.txt&quot;,true);</span><br></pre></td></tr></table></figure>
+<p>修改后，再次运行程序，即可实现在文件中追加内容的效果。</p>
+<p>通过学习，我们已经了解到包装流可以通过对一个已存在的流进行包装来实现数据读写功能，利用包装流可以有效地提高读写数据的效率。字符流提供了带缓冲区的包装流，分别是BufferedReader和BufferedWriter。其中，BufferedReader用于对字符输入流进行包装，BufferedReader中有一个重要的方法readLine()，该方法用于一次性读取一行文本。接下来通过一个案例来学习如何使用二个包装流实现文件的拷贝，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字符流.字符流操作文件3.png" alt="图片"></p>
+<p>上图中，使用了输入输出缓冲区对象，并通过一个while循环实现了文本文件的拷贝。在拷贝过程中，每次循环都使用readLine()方法读取文件的一行，然后通过write()方法写入目标文件。其中，readLine()方法会逐个读取字符，当读到回车符’\r’或者换行符’\n’时会将读到的字符作为一行内容返回。</p>
+<blockquote>
+<p>需要注意的是，由于字符缓冲流内部使用了缓冲区，在循环中调用BufferedWriter和write()方法写入字符时，这些字符会首先被写入缓冲区，当缓冲区写满时或调用close()方法时，缓冲区中的字符才会被写入目标文件。因此在循环结束时一定要调用close()方法，否则极有可能会导致部分存在缓冲区中的数据没有被写入目标文件。</p>
+</blockquote>
+<h3 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h3><p>IO流可以分为字节流和字符流，有时字节流和字符流之间也需要进行转换。在JDK中提供了二个类可以将字节流转换为字符流，他们分别是InputStreamReader和OutputStreamWriter。</p>
+<p>InputStreamReader是Reader的子类，它可以将一个字节输入流转换成字符输入流，方便直接读取字符。OutputStreamWriter是Writer的子类，它可以将一个字节输出流转换成字符输出流，方便直接写入字符。通过转换流进行数据读写的过程如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字符流.转换流1.png" alt="图片"></p>
+<p>接下来通过一个案例来学习如何将字节流转为字符流。为了提高读写效率，可以通过BufferedWriter和BufferedReader来实现转换工作，具体如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/字符流.转换流2.png" alt="图片"></p>
+<p>上图实现了字节流和字符流之间的转换，将字节流转换为字符流，从而实现直接对字符的读写。需要注意的是，在使用转换流时，只能针对操作文本的字节流进行转换，如果字节流操作的是一张图片，此时转换为字符流就会造成数据丢失。</p>
+<h2 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h2><p>IO流可以对文件的内容进行读写操作，在应用程序中还经常对文件本身进行一些常规的操作，例如创建一个文件、删除或者重命名某个文件、判断硬盘上某个文件是否存在、查询文件最后的修改时间等。针对文件的这类操作，JDK中提供了一个File类，该类封装了一个路径，并提供了一系列的方法用于操作该路径所指向的文件。</p>
+<h3 id="File类的常用方法"><a href="#File类的常用方法" class="headerlink" title="File类的常用方法"></a>File类的常用方法</h3><p>File类用于封装一个路径，这个路径可以是从系统盘符开始的绝对路径，如”D:\file\a.txt”，也可以是相对于当前目录而言的相对路径，如”src\hello.java”。File类内部封装的路径可以指向一个文件，也可以指向一个目录，在File类中提供了针对这些文件或目录的一些常规操作，接下来首先介绍一下File类常用的构造方法。</p>
+<p><img src="/2019/05/26/IO-输入输出/File类.File类的常用方法1.png" alt="图片"></p>
+<p>上图列出了File类的3个构造方法。通常来讲，如果程序只处理一个目录或文件，并且知道该目录或文件的路径，使用第一个构造方法方便。如果程序处理的是一个公共目录中的若干子目录或文件，那么使用第2个或者第3个构造方法会更方便。</p>
+<p>File类中提供了一系列方法，用于操作其内部封装的路径指向的文件或者目录，例如根据判断文件是否存在、创建、删除文件\目录等。接下来介绍一下File类常用的构造方法，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/File类.File类的常用方法2.png" alt="图片"></p>
+<p>上图中列出了File类的一系列常用方法，上图仅仅通过文字对File类的方法进行介绍，接下来通过一个案例来演示File类的常用方法。</p>
+<p><img src="/2019/05/26/IO-输入输出/File类.File类的常用方法3.png" alt="图片"></p>
+<p>调用File类的一系列方法，获取到了文件的名称、绝对路径、相对路径、文件是否可读等信息，最后通过delete()方法将文件删除。</p>
+<h3 id="遍历目录下的文件"><a href="#遍历目录下的文件" class="headerlink" title="遍历目录下的文件"></a>遍历目录下的文件</h3><p>File类中有一个list()方法，该方法用于遍历某个指定目录下的所有文件的名称，接下来通过一个案例演示一下list()方法的用法。</p>
+<p><img src="/2019/05/26/IO-输入输出/File类.File类的常用方法4.png" alt="图片"></p>
+<p>上图中创建了一个File对象，并指定了一个路径，通过调用File的isDirctory()方法判断路径指向的是否存在的目录，如果存在就调用list()方法，获取一个String类型的数组names，数组中包括这个目录下所有文件的文件名。然后通过循环遍历数组names，依次打印出每个文件名。</p>
+<p>上图实现了遍历一个目录下的所有文件的功能，然而有时程序只是需要得到指定类型的文件，如获取指定目录下的所有的”.java”文件。针对这种需求，FIle类中提供了一个重载的list(FilenameFilter filter)方法，该方法接收一个FilenameFilter类型的参数。FilenameFilter是一个接口，被称作文件过滤器FilenameFilter，并在accept()方法中做出判断，从而获得指定类型的文件。</p>
+<p>为了更好理解文件过滤的原理，接下来分步骤分析list(FilenameFilter filter)方法的工作原理。</p>
+<ol>
+<li>调用list()方法传入FilenameFilter文件过滤器对象。</li>
+<li>取出当前File对象所代表目录下的所有子目录和文件。</li>
+<li>对于每一个子目录或文件，都会调用文件过滤器对象的accept(File dir,String name)方法，并把代表当前目录的File对象以及这个子目录或文件的名字作为参数dir和name传递给方法。</li>
+<li>如果accept()方法返回true，就将当前遍历的这个子目录或文件添加到数组中，如果返回false，则不添加。</li>
+</ol>
+<p>接下来通过一个案例来演示如何遍历指定目录下所有扩展名为”.txt”的文件，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/File类.File类的常用方法5.png" alt="图片"></p>
+<p>上图中定义了FilenameFilter文件过滤器对象filter，并且实现了accept()方法。在accept()方法中，对当前正在遍历的currFile对象进行判断，只有当currFile对象代表文件，并且扩展名为”.txt”时，才返回true。在调用File对象的list()方法时，将filter过滤器对象传入，就得到了包含了所有”.txt”文件名字的字符串数组。</p>
+<p>前面的例子演示的都是遍历目录下文件的文件名，有时候在一个目录下，除了文件，还有子目录，如果想要得到所有子目录下的File类型对象，list()方法显然不能满足要求，这是需要使用File类提供的另一个方法listFiles()。listFiles()方法返回一个File对象数组，当对数组中的元素进行遍历时，如果元素中还有子目录需要遍历，则需要使用递归。接下来通过一个案例来实现指定目录下的文件，如下图所示。</p>
+<p><img src="/2019/05/26/IO-输入输出/File类.File类的常用方法6.png" alt="图片"></p>
+<p>上图中定义了一个静态方法fileDir()，该方法接收一个目标的File对象。在方法中，首先通过调用listFiles()方法把该目录下所有子目录和文件存到一个File类型的数组files中，接着遍历数组files，并且对当前遍历的File对象进行判断。如果是目录就重新调用fileDir()方法进行递归，如果是文件就直接打印输出文件的路径，这样该目录下所有文件就被成功遍历出来。</p>
+<h3 id="删除文件及目录"><a href="#删除文件及目录" class="headerlink" title="删除文件及目录"></a>删除文件及目录</h3><p>在操作文件时，经常需要删除一个目录下的某个文件或者删除整个目录，这是读者可以使用File类的delete()方法。接下来通过一个案例来演示如何使用delete()方法删除文件。</p>
+<p><img src="/2019/05/26/IO-输入输出/File类.删除文件及目录1.png" alt="图片"></p>
+<p>上图中运行结果中输出了false，这说明删除文件失败了，因为File类的delete()方法只能删除一个指定的文件，假如File对象代表目录，并且目录下包含子目录和文件，则File类的delete()方法不允许对这个目录直接删除。在这种情况下，需要通过递归的方式将整个目录以及其中的文件全部删除。</p>
+<p><img src="/2019/05/26/IO-输入输出/File类.删除文件及目录2.png" alt="图片"></p>
+<p>上图中定义了一个删除目录的静态方法deleteDir()来接收一个类型的参数。在这个方法中调用listFiles()方法把目录下所有的子目录和文件保存到一个File类型的数组files中，然后遍历files，如果是目录就重新调用deleteDir()方法进行递归，如果是文件就直接调用File的delete()方法删除。当删除完一个目录下的所有文件后，在删除当前这个目录，这样便从里层到外层递归地删除了整个目录。</p>
+<blockquote>
+<p>需要注意的是，在Java中删除目录是从虚拟机直接删除不走回收站，文件一旦删除就无法恢复，因此在进行删除操作的时候需要格外小心。</p>
+</blockquote>
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><h3 id="保存书店每日交易记录程序设计"><a href="#保存书店每日交易记录程序设计" class="headerlink" title="保存书店每日交易记录程序设计"></a>保存书店每日交易记录程序设计</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br></pre></td><td class="code"><pre><span class="line">Books.java</span><br><span class="line"></span><br><span class="line">package xxgc.wlw.wk71;</span><br><span class="line"></span><br><span class="line">public class Books &#123;</span><br><span class="line">	int id;</span><br><span class="line">	String name;  //图书名称</span><br><span class="line">	double price;  //图书单价</span><br><span class="line">	int number;    //图书数量</span><br><span class="line">	double money;  //总价</span><br><span class="line">	String Publish;  //出版社</span><br><span class="line">	public Books(int id,String name,double price,int number,double money,String Publish)&#123;</span><br><span class="line">		this.id=id;</span><br><span class="line">		this.name=name;</span><br><span class="line">		this.price=price;</span><br><span class="line">		this.number=number;</span><br><span class="line">		this.money=money;</span><br><span class="line">		this.Publish=Publish;</span><br><span class="line">	&#125;</span><br><span class="line">	public String toString()&#123;</span><br><span class="line">		String message=&quot;图书编号:&quot;+id+&quot; 图书名称: &quot;+name+&quot; 出版社: &quot;+Publish+&quot; 单价: &quot;+price+&quot; 库存数量: &quot;+number;</span><br><span class="line">		return message;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setNumber(int number)&#123;</span><br><span class="line">		this.number=number;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">RecordBooksOrder.java</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">package xxgc.wlw.wk71;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class RecordBooksOrder &#123;</span><br><span class="line"></span><br><span class="line">	static ArrayList&lt;Books&gt; booksList = new ArrayList&lt;Books&gt;();//创建书架</span><br><span class="line">	@SuppressWarnings(&quot;resource&quot;)</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		init();//初始化书架</span><br><span class="line">		//将书架上所有图书信息打印出来</span><br><span class="line">		for (int i = 0; i &lt; booksList.size(); i++) &#123;</span><br><span class="line">			System.out.println(booksList.get(i));</span><br><span class="line">		&#125;</span><br><span class="line">		while(true)&#123;</span><br><span class="line">			//获取控制台输入的信息</span><br><span class="line">			Scanner scan = new Scanner(System.in);</span><br><span class="line">			System.out.println(&quot;请输入图书编号:&quot;);</span><br><span class="line">			int bookId = scan.nextInt();</span><br><span class="line">			Books stockBooks = getBooksById(bookId);</span><br><span class="line">			if(stockBooks!=null)&#123;//判断是否存在此图书</span><br><span class="line">				System.out.println(&quot;当前图书信息:&quot;+stockBooks);</span><br><span class="line">				System.out.println(&quot;请输入购买数量:&quot;);</span><br><span class="line">				int bookNumber = scan.nextInt();</span><br><span class="line">				if(bookNumber&lt;=stockBooks.number)&#123;//判断库存是否足够</span><br><span class="line">					//将输入信息封装成Books对象</span><br><span class="line">					Books books = new Books(stockBooks.id, stockBooks.name, stockBooks.price, stockBooks.number, stockBooks.money, stockBooks.Publish);</span><br><span class="line">					FileUtil.saveBooks(books);//将本条数据保存至本地文件</span><br><span class="line">					//修改库存</span><br><span class="line">					stockBooks.setNumber(stockBooks.number-bookNumber);</span><br><span class="line">				&#125;else &#123;</span><br><span class="line">					System.out.println(&quot;库存不足!&quot;);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;else &#123;</span><br><span class="line">				System.out.println(&quot;图书编号输入错误!&quot;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	//初始化书架上图书的信息 将图书放到书架上</span><br><span class="line">	private static void init() &#123;</span><br><span class="line">		Books goods1 = new Books(101, &quot;Java编程入门&quot;, 44.50, 100, 4450.00, &quot;清华大学出版社&quot;);</span><br><span class="line">		Books goods2 = new Books(102, &quot;Java编程基础&quot;, 108.00, 50, 5400.00, &quot;机械工业出版社&quot;);</span><br><span class="line">		Books goods3 = new Books(103, &quot;Java编程讲义&quot;, 99.00, 100, 9900.00, &quot;电子工业出版社&quot;);</span><br><span class="line">		booksList.add(goods1);</span><br><span class="line">		booksList.add(goods2);</span><br><span class="line">		booksList.add(goods3);</span><br><span class="line">	&#125;</span><br><span class="line">	//根据输入的图书编号查找图书信息 循环遍历书架中图书信息，找到图书编号相等的取出</span><br><span class="line">	private static Books getBooksById(int bookId) &#123;</span><br><span class="line">		for (int i = 0; i &lt; booksList.size(); i++) &#123;</span><br><span class="line">			Books thisBooks = booksList.get(i);</span><br><span class="line">			if(bookId==thisBooks.id)&#123;</span><br><span class="line">				return thisBooks;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">FileUtil.java</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">package xxgc.wlw.wk71;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">import java.util.*;</span><br><span class="line">import java.text.*;</span><br><span class="line"></span><br><span class="line">public class FileUtil &#123;</span><br><span class="line">     public static final String SEPARATE_FIELD = &quot;,&quot;;</span><br><span class="line">     public static final String SEPARATE_LINE = &quot;\r\n&quot;;</span><br><span class="line">     //保存图书信息</span><br><span class="line">     public static void saveBooks(Books books)&#123;</span><br><span class="line">    	 //判断本地是否存在此文件</span><br><span class="line">    	 Date date = new Date();</span><br><span class="line">    	 DateFormat format = new SimpleDateFormat(&quot;yyyyMMdd&quot;);//定义日期格式</span><br><span class="line">    	 String name = &quot;销售记录&quot;+format.format(date)+&quot;.csv&quot;;//拼接文件名</span><br><span class="line">    	 InputStream in = null;</span><br><span class="line">    	 try &#123;</span><br><span class="line">			in = new FileInputStream(name);//判断本地是否存在此文件</span><br><span class="line">			if(in!=null)&#123;</span><br><span class="line">				in.close();//关闭输入流</span><br><span class="line">				createFile(name,false,books); //存在文件，采取修改文件方式</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">			createFile(name,false,books);//不存在文件，采取新建文件新文件方式</span><br><span class="line">		&#125;catch (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">    	 </span><br><span class="line">     &#125;</span><br><span class="line">     /*</span><br><span class="line">      * 将图书的售出信息保存到本地，可通过label标识来判断是修改文件还是新建文件</span><br><span class="line">      * </span><br><span class="line">      * name文件名</span><br><span class="line">      * label文件已存在的标识true:已存在则修改；false:不存在则新建</span><br><span class="line">      * books图书信息</span><br><span class="line">      */</span><br><span class="line"></span><br><span class="line">	private static void createFile(String name, boolean label, Books books) &#123;</span><br><span class="line">		BufferedOutputStream out = null;</span><br><span class="line">		StringBuffer sbf = new StringBuffer();//拼接内容</span><br><span class="line">		try&#123;</span><br><span class="line">			if(label)&#123;//当已存在当天的文件，则在文件内容后追加</span><br><span class="line">				//创建输入流，用于追加文件</span><br><span class="line">				out = new BufferedOutputStream(new FileOutputStream(name,true));</span><br><span class="line">			&#125;else &#123;//不存在当天文件，则新建文件</span><br><span class="line">				//创建输出流，用于保存文件</span><br><span class="line">				out = new BufferedOutputStream(new FileOutputStream(name));</span><br><span class="line">				String[] fieldSort = new String[]&#123;&quot;图书编号&quot;,&quot;图书名称&quot;,&quot;购买数量&quot;,&quot;单价&quot;,&quot;总价&quot;,&quot;出版社&quot;&#125;;</span><br><span class="line">	            //创建表头</span><br><span class="line">				for (String fieldKye : fieldSort) &#123;</span><br><span class="line">					//新建时，将表头存入本地文件</span><br><span class="line">					sbf.append(fieldKye).append(SEPARATE_FIELD);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			sbf.append(SEPARATE_LINE);//追加换行符</span><br><span class="line">			sbf.append(books.id).append(SEPARATE_FIELD);</span><br><span class="line">			sbf.append(books.name).append(SEPARATE_FIELD);</span><br><span class="line">			sbf.append(books.number).append(SEPARATE_FIELD);</span><br><span class="line">			sbf.append((double)books.price).append(SEPARATE_FIELD);</span><br><span class="line">			sbf.append((double)books.money).append(SEPARATE_FIELD);</span><br><span class="line">			sbf.append(books.Publish).append(SEPARATE_FIELD);</span><br><span class="line">		    String str = sbf.toString();</span><br><span class="line">		    byte[] b=str.getBytes();</span><br><span class="line">		    for (int i = 0; i &lt; b.length; i++) &#123;</span><br><span class="line">				out.write(b[i]);  //将内容写入本地文件</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;catch(Exception e)&#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;finally&#123;</span><br><span class="line">			try &#123;</span><br><span class="line">				if(out !=null)</span><br><span class="line">					out.close();//关闭输入流</span><br><span class="line">			&#125; catch (Exception e2) &#123;</span><br><span class="line">				e2.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模拟笔记本"><a href="#模拟笔记本" class="headerlink" title="模拟笔记本"></a>模拟笔记本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">package xxgc.wlw.wk72;</span><br><span class="line">import java.io.*;</span><br><span class="line">import java.util.*;</span><br><span class="line">public class Notepad &#123;</span><br><span class="line">    private static String filePathString;</span><br><span class="line">    private static String messageString = &quot;&quot;;</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		System.out.println(&quot;--1.新建文件  2.打开文件  3.修改文件  4.保存  5.退出--&quot;);</span><br><span class="line">        while (true) &#123;</span><br><span class="line">			System.out.print(&quot;请输入操作指令:&quot;);</span><br><span class="line">			int command = scanner.nextInt();</span><br><span class="line">			switch (command) &#123;</span><br><span class="line">			case 1:</span><br><span class="line">				createFile();    //1.新建文件</span><br><span class="line">				break;</span><br><span class="line">			case 2:</span><br><span class="line">				openFile();      //2.打开文件</span><br><span class="line">				break;</span><br><span class="line">			case 3:</span><br><span class="line">				editFile();      //3.修改文件</span><br><span class="line">				break; </span><br><span class="line">			case 4:</span><br><span class="line">				saveFile();      //4.保存</span><br><span class="line">				break;</span><br><span class="line">			case 5:</span><br><span class="line">				exit();          //5.退出</span><br><span class="line">				break;</span><br><span class="line">			default:</span><br><span class="line">				System.out.println(&quot;您输入的指令错误！&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	/*</span><br><span class="line">	 * 退出</span><br><span class="line">	 * */</span><br><span class="line">	private static void exit() &#123;</span><br><span class="line">		System.out.println(&quot;您已退出系统，谢谢使用！&quot;);</span><br><span class="line">		System.exit(0);</span><br><span class="line">	&#125;</span><br><span class="line">	/*</span><br><span class="line">	 * 保存 新建文件存在用户输入的路径  打开的文件将原文件覆盖</span><br><span class="line">	 * */</span><br><span class="line">	private static void saveFile()throws IOException &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		FileWriter out = null;</span><br><span class="line">		if (filePathString!=null) &#123;  //文件是由&quot;打开&quot;载入的</span><br><span class="line">			out=new FileWriter(filePathString);  //将原文件覆盖</span><br><span class="line">		&#125; else &#123;//新建的文件</span><br><span class="line">            System.out.print(&quot;请输入文件保存的绝对路径:&quot;);</span><br><span class="line">            String pathString = scanner.next(); //获取文件保存的路径</span><br><span class="line">            filePathString = pathString; </span><br><span class="line">            //将输入路径中大写字母替换成小写字母后判断是不是文本格式</span><br><span class="line">            if (!filePathString.toLowerCase().endsWith(&quot;.txt&quot;)) &#123;</span><br><span class="line">				filePathString += &quot;.txt&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">            out = new FileWriter(filePathString);//构造输出流</span><br><span class="line">		&#125;</span><br><span class="line">		out.write(messageString);  //写入暂存的内容</span><br><span class="line">		out.close();               //关闭输出流</span><br><span class="line">		messageString = &quot;&quot;;        //修改文件前现将写入内容置空</span><br><span class="line">		filePathString = null;     //将文件路径至null</span><br><span class="line">	&#125;</span><br><span class="line">	/*</span><br><span class="line">	 * 修改文件内容    通过字符串替换的形式</span><br><span class="line">	 * */</span><br><span class="line">	private static void editFile() &#123;</span><br><span class="line">		if (messageString == &quot;&quot; &amp;&amp; filePathString == null) &#123;</span><br><span class="line">			System.out.println(&quot;请先新建文件或者打开文件&quot;);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		System.out.println(&quot;请输入要修改的内容(以\&quot;修改的目标文字:修改后的文字\&quot;格式),&quot;+&quot;停止修改请输入\&quot;stop\&quot;:&quot;);</span><br><span class="line">		String inputMessageString = &quot;&quot;;</span><br><span class="line">		while (!inputMessageString.equals(&quot;stop&quot;)) &#123;//当输入stop时，停止修改</span><br><span class="line">			inputMessageString = scanner.nextLine();</span><br><span class="line">			if (inputMessageString!=null&amp;&amp;inputMessageString.length()&gt;0) &#123;</span><br><span class="line">				//将输入的文字根据&quot;:&quot;拆分成数组</span><br><span class="line">				String[] editMessage = inputMessageString.split(&quot;:&quot;);</span><br><span class="line">				if (editMessage!=null&amp;&amp;editMessage.length&gt;1) &#123;</span><br><span class="line">					//根据输入的信息将文件中的内容替换</span><br><span class="line">					messageString = messageString.replace(editMessage[0],editMessage[1]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;修改后的内容:&quot;+&quot;\r\n&quot;+messageString);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/*</span><br><span class="line">	 * 打开文件</span><br><span class="line">	 * */</span><br><span class="line">	private static void openFile()throws Exception &#123;</span><br><span class="line">		messageString = &quot;&quot;;//打开文件将暂存内容清空</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		System.out.println(&quot;请输入文件打开的位置:&quot;);</span><br><span class="line">		filePathString = scanner.next();//获取打开文件的路径</span><br><span class="line">		//控制只能输入txt格式的文件路径</span><br><span class="line">		if (filePathString != null &amp;&amp; filePathString.endsWith(&quot;.txt&quot;)) &#123;</span><br><span class="line">			System.out.println(&quot;请选择文本文件！&quot;);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		FileReader inFileReader = new FileReader(filePathString);//实例化一个FileReader对象</span><br><span class="line">		char[] charArray = new char[1024];//缓冲数组</span><br><span class="line">		int len = 0;</span><br><span class="line">		StringBuffer sBuffer = new StringBuffer();</span><br><span class="line">		//循环读取，一次性读取一个字符数组</span><br><span class="line">		while((len=inFileReader.read(charArray))!=1)&#123;</span><br><span class="line">			sBuffer.append(charArray);</span><br><span class="line">		&#125;</span><br><span class="line">		messageString = sBuffer.toString();//将打开的文件暂存</span><br><span class="line">		System.out.println(&quot;打开文件内容:&quot;+&quot;\r\n&quot;+messageString);</span><br><span class="line">		inFileReader.close();//释放资源</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/*</span><br><span class="line">	 * 新建文件  从控制台获取内容</span><br><span class="line">	 * */</span><br><span class="line">	private static void createFile() &#123;</span><br><span class="line">		messageString = &quot;&quot;; //新建文件时，暂存文件内容清空</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		System.out.println(&quot;请输入内容，停止编写请输入\&quot;stop\&quot;:&quot;);//提示</span><br><span class="line">		StringBuffer stb = new StringBuffer();//用于后期输入内容的拼接</span><br><span class="line">		String inputMessage=&quot;&quot;;</span><br><span class="line">		while (!inputMessage.equals(&quot;stop&quot;)) &#123;//当输入&quot;stop&quot;时，停止输入</span><br><span class="line">			if (stb.length()&gt;0) &#123;</span><br><span class="line">				stb.append(&quot;\r\n&quot;);  //追加换行符</span><br><span class="line">			&#125;</span><br><span class="line">			stb.append(inputMessage);  //拼接输入信息</span><br><span class="line">			inputMessage = scanner.nextLine();  //获取输入信息</span><br><span class="line">		&#125;</span><br><span class="line">		messageString = stb.toString();//将输入内容暂存</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="模拟文件管理器"><a href="#模拟文件管理器" class="headerlink" title="模拟文件管理器"></a>模拟文件管理器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br></pre></td><td class="code"><pre><span class="line">DocumentManager.java</span><br><span class="line"></span><br><span class="line">package io73;</span><br><span class="line"></span><br><span class="line">import java.io.File;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class DocumentManager &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		System.out.println(&quot;--1.指定关键字检索文件  2.指定后缀名检索文件 3.复制文件/目录  4.退出--&quot;);</span><br><span class="line">		while (true) &#123;</span><br><span class="line">			System.out.println(&quot;请输入指令:&quot;);</span><br><span class="line">			int command = scanner.nextInt();</span><br><span class="line">			switch (command) &#123;</span><br><span class="line">			case 1:</span><br><span class="line">				searchByKeyWorld();</span><br><span class="line">				break;</span><br><span class="line">			case 2:</span><br><span class="line">				searchBySuffix();</span><br><span class="line">				break;</span><br><span class="line">			case 3:</span><br><span class="line">				copyDirectory();</span><br><span class="line">				break;</span><br><span class="line">			case 4:</span><br><span class="line">				exit();</span><br><span class="line">				break;</span><br><span class="line"></span><br><span class="line">			default:</span><br><span class="line">				System.out.println(&quot;你输入的指令错误！&quot;);</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">  //**************1.指定关键字检索文件*******************</span><br><span class="line">	private static void searchByKeyWorld() &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		System.out.println(&quot;请输入要检索的目录位置：&quot;);</span><br><span class="line">		String pathString = scanner.next();//从控制台获取路径</span><br><span class="line">		File file = new File(pathString);</span><br><span class="line">		if (!file.exists()||!file.isDirectory()) &#123;</span><br><span class="line">			System.out.println(pathString+&quot;(不是有效目录)&quot;);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;请输入搜索关键字:&quot;);</span><br><span class="line">		String key = scanner.next();//获取关键字</span><br><span class="line">		//在输入目录下获取所有包含关键字的文件路径</span><br><span class="line">		ArrayList&lt;String&gt; list = FileUtils.listFile(file,key);</span><br><span class="line">		for (Object obj : list) &#123;</span><br><span class="line">			System.out.println(obj);//将路径打印到控制台</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">//****************2.指定后缀名检索文件******************</span><br><span class="line">	private static void searchBySuffix() &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		System.out.println(&quot;请输入要检索的目录位置：&quot;);</span><br><span class="line">		String pathString = scanner.next();//从控制台获取路径</span><br><span class="line">		File file = new File(pathString);</span><br><span class="line">		if (!file.exists()||!file.isDirectory()) &#123;</span><br><span class="line">			System.out.println(pathString+&quot;(不是有效目录)&quot;);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;请输入搜索后缀:&quot;);</span><br><span class="line">		String suffixString = scanner.next();</span><br><span class="line">		String[] suffixArrayStrings = suffixString.split(&quot;,&quot;);//获取后缀字符</span><br><span class="line">		//在输入目录下获取所有指定后缀名的文件路径</span><br><span class="line">		ArrayList&lt;String&gt; list = FileUtils.listFile(file,suffixArrayStrings);</span><br><span class="line">		for (Object obj : list) &#123;</span><br><span class="line">			System.out.println(obj);//将路径打印到控制台</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">//***************3.复制目录/文件******************</span><br><span class="line">	private static void copyDirectory() throws Exception &#123;</span><br><span class="line">		Scanner scanner = new Scanner(System.in);</span><br><span class="line">		System.out.println(&quot;请输入源目录:&quot;);</span><br><span class="line">		String srcDirectory = scanner.next();//从控制台获取源路径</span><br><span class="line">		File srcFile = new File(srcDirectory);</span><br><span class="line">		if (!srcFile.exists()||!srcFile.isDirectory()) &#123;</span><br><span class="line">			System.out.println(&quot;(不是有效目录)&quot;);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(&quot;请输入目标位置:&quot;);</span><br><span class="line">		String destDirectoryString = scanner.next();//从控制台获取目标路径</span><br><span class="line">		File destFile = new File(destDirectoryString);</span><br><span class="line">		if (!destFile.exists()||!destFile.isDirectory()) &#123;</span><br><span class="line">			System.out.println(&quot;(无效位置)&quot;);</span><br><span class="line">			return;</span><br><span class="line">		&#125;</span><br><span class="line">		//将源路径中内容复制到目标路径下</span><br><span class="line">		FileUtils.copySrcPathToDestPash(srcFile,destFile);</span><br><span class="line">	&#125;</span><br><span class="line">    //************4.退出****************</span><br><span class="line">	private static void exit() &#123;</span><br><span class="line">		System.out.println(&quot;您已退出系统，谢谢使用&quot;);</span><br><span class="line">		System.exit(0);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">FileUtils.java</span><br><span class="line"></span><br><span class="line">package io73;</span><br><span class="line"></span><br><span class="line">import java.io.*;</span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">public class FileUtils &#123;</span><br><span class="line">	/**</span><br><span class="line">	 * 指定关键字检索文件</span><br><span class="line">	 * @param file File对象</span><br><span class="line">	 * @param key关键字</span><br><span class="line">	 * @return 包含关键字的文件路径</span><br><span class="line">	 * */</span><br><span class="line">	public static ArrayList&lt;String&gt; listFile(File file, final String key) &#123;</span><br><span class="line">		FilenameFilter filter = new FilenameFilter() &#123;</span><br><span class="line">			public boolean accept(File dir, String name) &#123;</span><br><span class="line">				File currFile = new File(dir, name);</span><br><span class="line">				//如果文件名包含关键字返回true，否则返回false</span><br><span class="line">				if (currFile.isFile()&amp;&amp;name.contains(key)) &#123;</span><br><span class="line">					return true;</span><br><span class="line">				&#125;</span><br><span class="line">				return false;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		//递归方式获取规定的路径</span><br><span class="line">		ArrayList&lt;String&gt; arrayList = fileDir(file,filter);</span><br><span class="line">		return arrayList;</span><br><span class="line">	&#125;</span><br><span class="line">	/*</span><br><span class="line">	 * 递归方式获取规定的路径</span><br><span class="line">	 * @param dir File对象</span><br><span class="line">	 * @param filter 过滤器</span><br><span class="line">	 * @return 过滤器过滤以后的文件路径</span><br><span class="line">	 * */</span><br><span class="line">	private static ArrayList&lt;String&gt; fileDir(File dir, FilenameFilter filter) &#123;</span><br><span class="line">		ArrayList&lt;String&gt; arrayList = new ArrayList&lt;String&gt;();</span><br><span class="line">		File[] lists = dir.listFiles(filter);//获取过滤后的所有文件数组</span><br><span class="line">		for (File list : lists) &#123;</span><br><span class="line">			//将文件的绝对路径放到集合中</span><br><span class="line">			arrayList.add(list.getAbsolutePath());</span><br><span class="line">		&#125;</span><br><span class="line">		File[] files = dir.listFiles();  //获取当前目录下所有文件的数组</span><br><span class="line">		for (File file : files) &#123;  //遍历所有的子目录和文件</span><br><span class="line">			if (file.isDirectory()) &#123;</span><br><span class="line">				//如果是目录，递归调用fileDir（）</span><br><span class="line">				ArrayList&lt;String&gt; everyArrayList = fileDir(file, filter);</span><br><span class="line">				arrayList.addAll(everyArrayList); //将文件夹下的路径添加到集合中</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;//此时的集合中有当前目录下的文件路径，和当前目录的子目录下的文件路径</span><br><span class="line">		return arrayList;</span><br><span class="line">	&#125;</span><br><span class="line">         /*</span><br><span class="line">          *   指定后缀名检索文件</span><br><span class="line">          * @param file File 对象</span><br><span class="line">          * @param suffixArray 后缀名数组</span><br><span class="line">          * @return 指定后缀的名的文件路径</span><br><span class="line">          * */</span><br><span class="line">	public static ArrayList&lt;String&gt; listFile(File file,	final String[] suffixArrayStrings) &#123;</span><br><span class="line">		FilenameFilter filter = new FilenameFilter() &#123;</span><br><span class="line"></span><br><span class="line">			public boolean accept(File dir, String name) &#123;</span><br><span class="line">				File currFile = new File(dir, name);</span><br><span class="line">				if (currFile.isFile()) &#123;</span><br><span class="line">					for (String string : suffixArrayStrings) &#123;</span><br><span class="line">						if (name.endsWith(&quot;.&quot;+string)) &#123;</span><br><span class="line">							return true;</span><br><span class="line">						&#125;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				return false;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		//递归的方法获取规定的路径</span><br><span class="line">		ArrayList&lt;String&gt; arrayList = fileDir(file,filter);</span><br><span class="line">		return arrayList;</span><br><span class="line">	&#125;</span><br><span class="line">	/*</span><br><span class="line">	 * 复制文件/目录</span><br><span class="line">	 * @param srcFile 源目录</span><br><span class="line">	 * @param destFile 目标目录</span><br><span class="line">	 * */</span><br><span class="line">	public static void copySrcPathToDestPash(File srcFile, File destFile) throws Exception &#123;</span><br><span class="line">		File[] files = srcFile.listFiles();//子文件目录</span><br><span class="line">		for (int i = 0; i &lt; files.length; i++) &#123;</span><br><span class="line">			File copiedFile = new File(destFile,files[i].getName());</span><br><span class="line">			if (files[i].isDirectory()) &#123;//如果是目录</span><br><span class="line">				if (!copiedFile.mkdirs()) &#123;//创建文件夹</span><br><span class="line">					System.out.println(&quot;无法创建:&quot;+copiedFile);</span><br><span class="line">					return;</span><br><span class="line">				&#125;</span><br><span class="line">				//调用递归，获取子文件夹下的文件路径</span><br><span class="line">				copySrcPathToDestPash(files[i], copiedFile);</span><br><span class="line">			&#125;else &#123;//复制文件</span><br><span class="line">				FileInputStream inputStream = new FileInputStream(files[i]);</span><br><span class="line">				FileOutputStream outputStream = new FileOutputStream(copiedFile);//获取输出流</span><br><span class="line">				byte[] buffer = new byte[1024];//创建缓冲区</span><br><span class="line">				int n=0;</span><br><span class="line">				//循环读取字节</span><br><span class="line">				while ((n=inputStream.read(buffer))!=-1) &#123;</span><br><span class="line">					outputStream.write(buffer,0,n);</span><br><span class="line">				&#125;</span><br><span class="line">				inputStream.close();//关闭输入流</span><br><span class="line">				outputStream.close();//关闭输出流</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/13/集合类/" rel="next" title="集合类">
+                <i class="fa fa-chevron-left"></i> 集合类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="kang-shao">
+          <p class="site-author-name" itemprop="name">kang-shao</p>
+           
+              <p class="site-description motion-element" itemprop="description">教室里，黄昏下，桐琴纸笛，余音绕梁。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字节流"><span class="nav-number">1.</span> <span class="nav-text">字节流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字节流概念"><span class="nav-number">1.1.</span> <span class="nav-text">字节流概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字节流读写文件"><span class="nav-number">1.2.</span> <span class="nav-text">字节流读写文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件的拷贝"><span class="nav-number">1.3.</span> <span class="nav-text">文件的拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字节流的缓冲区"><span class="nav-number">1.4.</span> <span class="nav-text">字节流的缓冲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字节缓冲流"><span class="nav-number">1.5.</span> <span class="nav-text">字节缓冲流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符流"><span class="nav-number">2.</span> <span class="nav-text">字符流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符流定义及基本用法"><span class="nav-number">2.1.</span> <span class="nav-text">字符流定义及基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符流操作文件"><span class="nav-number">2.2.</span> <span class="nav-text">字符流操作文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转换流"><span class="nav-number">2.3.</span> <span class="nav-text">转换流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File类"><span class="nav-number">3.</span> <span class="nav-text">File类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#File类的常用方法"><span class="nav-number">3.1.</span> <span class="nav-text">File类的常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历目录下的文件"><span class="nav-number">3.2.</span> <span class="nav-text">遍历目录下的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文件及目录"><span class="nav-number">3.3.</span> <span class="nav-text">删除文件及目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本章小结"><span class="nav-number">4.</span> <span class="nav-text">本章小结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#保存书店每日交易记录程序设计"><span class="nav-number">4.1.</span> <span class="nav-text">保存书店每日交易记录程序设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟笔记本"><span class="nav-number">4.2.</span> <span class="nav-text">模拟笔记本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟文件管理器"><span class="nav-number">4.3.</span> <span class="nav-text">模拟文件管理器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kang-shao</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
